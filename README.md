@@ -1,32 +1,11 @@
-# Github-portfolio
+# GitHub Portfolio
 
-## Getting Started
+Generate a portfolio for your GitHub repository.
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
+# License
 
-    % ./bin/setup
+This github-portfolio application is Copyright 2015 Edward Anderson,
+and is distributed under the GNU Affero General Public License.
 
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
-
-[this script]: https://github.com/thoughtbot/laptop
-
-After setting up, you can run the application using [foreman]:
-
-    % foreman start
-
-If you don't have `foreman`, see [Foreman's install instructions][foreman]. It
-is [purposefully excluded from the project's `Gemfile`][exclude].
-
-[foreman]: https://github.com/ddollar/foreman
-[exclude]: https://github.com/ddollar/foreman/pull/437#issuecomment-41110407
-
-## Guidelines
-
-Use the following guides for getting things done, programming well, and
-programming in style.
-
-* [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-* [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-* [Style](http://github.com/thoughtbot/guides/blob/master/style)
+You may use this code for free, but you are required to offer the source code
+for your version to your users. See LICENSE for details.
