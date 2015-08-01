@@ -43,13 +43,10 @@ group :development, :test do
 end
 
 group :test do
-  gem "capybara-webkit", ">= 1.2.0"
   gem "database_cleaner"
-  gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false
-  gem "timecop"
   gem "webmock"
 end
 
