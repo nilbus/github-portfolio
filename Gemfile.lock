@@ -86,6 +86,7 @@ GEM
       thread_safe
     email_validator (1.6.0)
       activemodel
+    equalizer (0.0.8)
     erubis (2.7.0)
     execjs (2.5.2)
     factory_girl (4.5.0)
@@ -306,6 +307,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   dotenv-rails
   email_validator
+  equalizer
   factory_girl_rails
   flutie
   guard-rspec
