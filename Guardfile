@@ -47,6 +47,6 @@ guard :rspec, cmd: "bin/rspec" do
     Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
   end
 
-  # Always run the smoke test
-  watch(/.rb$/) { 'spec/controllers/portfolios_controller_spec.rb' }
+  # # Always run the smoke test
+  # watch(/.rb$/) { 'spec/controllers/portfolios_controller_spec.rb' }
 end
