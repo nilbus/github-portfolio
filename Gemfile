@@ -7,7 +7,6 @@ gem "airbrake"
 gem "autoprefixer-rails"
 gem "bourbon", "~> 4.2.0"
 gem "coffee-rails", "~> 4.1.0"
-gem "delayed_job_active_record"
 gem "email_validator"
 gem "flutie"
 gem "haml"
@@ -47,7 +46,6 @@ group :development, :test do
 end
 
 group :test do
-  gem "database_cleaner"
   gem "launchy"
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false
