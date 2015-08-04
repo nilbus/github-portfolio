@@ -20,4 +20,8 @@ RSpec.configure do |config|
   config.order = :random
 end
 
-WebMock.disable_net_connect!(allow_localhost: true)
+VCR.configure do |vcr|
+  vcr.cassette_library_dir = 'spec/vcr_cassettes'
+  vcr.hook_into :webmock
+  vcr.configure_rspec_metadata!
+end

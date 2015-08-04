@@ -2,7 +2,7 @@
 class PortfolioStore
   def find(github_username)
     data = store.fetch(key_for(github_username))
-    Portfolio.new(data) if data
+    Portfolio.load(data) if data
   end
 
   def key_for(github_username)
@@ -14,6 +14,6 @@ class PortfolioStore
   end
 
   def save(portfolio)
-    store.write(key_for(portfolio.user.username), portfolio.serialize)
+    store.write(key_for(portfolio.user.login), portfolio.serialize)
   end
 end

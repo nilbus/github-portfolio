@@ -13,3 +13,4 @@
 /tags
 /tmp/*
 /config/secrets.yml
+/spec/vcr_cassettes

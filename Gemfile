@@ -18,6 +18,7 @@ gem "lift"
 gem "neat", "~> 1.7.0"
 gem "newrelic_rpm", ">= 3.9.8"
 gem "normalize-rails", "~> 3.0.0"
+gem "octokit"
 gem "pg"
 gem "rack-canonical-host"
 gem "puma"
@@ -50,6 +51,7 @@ group :test do
   gem "launchy"
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false
+  gem "vcr"
   gem "webmock"
 end
 
