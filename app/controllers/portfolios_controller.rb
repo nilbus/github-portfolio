@@ -5,6 +5,14 @@ class PortfoliosController < ApplicationController
   def show
     @github_username = params[:id]
     @portfolio = PortfolioStore.new.find(@github_username)
-    return render :loading if @portfolio.nil?
+    respond_to do |format|
+      format.html do
+        return render :loading if @portfolio.nil?
+      end
+      format.json do
+        @portfolio = FetchDataWorker.new.perform(@github_username)
+        render json: {result: 'reload; portfolio serialization to json not yet supported'}
+      end
+    end
   end
 end

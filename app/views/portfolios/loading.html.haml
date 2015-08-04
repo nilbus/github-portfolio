@@ -1,2 +1,4 @@
-No data loaded yet for
-%span.username= @github_username
+.message.flash-error{style: 'display: none;'}
+.message.flash-notice
+  Loading profile for
+  %em.username{id: 'user-missing-portfolio', data: {github_username: @github_username}}= @github_username
