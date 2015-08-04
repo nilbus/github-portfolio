@@ -37,7 +37,7 @@ end
 group :development, :test do
   gem "awesome_print"
   gem "bundler-audit", require: false
-  gem "byebug"
+  gem "pry-byebug"
   gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "guard-rspec"
