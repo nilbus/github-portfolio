@@ -18,6 +18,17 @@ class GithubAPI
   private
 
   def configure_cache
-    puts 'FIXME: Cache not implemented'
+    @api.middleware = prepend_middleware_to(Octokit.middleware) do |builder|
+      builder.use Faraday::HttpCache, store: Rails.cache
+    end
+  end
+
+  def prepend_middleware_to(original_rack_stack)
+    Faraday::RackBuilder.new do |builder|
+      yield builder
+      original_rack_stack.handlers.each do |handler|
+        builder.use(handler.klass)
+      end
+    end
   end
 end

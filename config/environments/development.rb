@@ -38,4 +38,10 @@ Rails.application.configure do
   config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.default_url_options = { host: "localhost:9000" }
+  if ENV['MEMCACHE_IN_DEVELOPMENT']
+    config.cache_store = :dalli_store, nil, {
+      namespace: Rails.application.engine_name,
+      compress: true
+    }
+  end
 end

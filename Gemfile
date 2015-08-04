@@ -9,6 +9,7 @@ gem "bourbon", "~> 4.2.0"
 gem "coffee-rails", "~> 4.1.0"
 gem "email_validator"
 gem "equalizer"
+gem "faraday-http-cache"
 gem "flutie"
 gem "haml"
 gem "high_voltage"
@@ -20,8 +21,8 @@ gem "newrelic_rpm", ">= 3.9.8"
 gem "normalize-rails", "~> 3.0.0"
 gem "octokit"
 gem "pg"
-gem "rack-canonical-host"
 gem "puma"
+gem "rack-canonical-host"
 gem "rails", "~> 4.2.0"
 gem "recipient_interceptor"
 gem "refills"
@@ -56,5 +57,6 @@ group :test do
 end
 
 group :staging, :production do
+  gem "dalli"
   gem "rack-timeout"
 end

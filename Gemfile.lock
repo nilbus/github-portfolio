@@ -75,6 +75,7 @@ GEM
     columnize (0.9.0)
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
+    dalli (2.7.4)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
@@ -99,6 +100,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    faraday-http-cache (1.1.1)
+      faraday (~> 0.8)
     ffi (1.9.10)
     flutie (2.0.0)
     formatador (0.2.5)
@@ -319,10 +322,12 @@ DEPENDENCIES
   bourbon (~> 4.2.0)
   bundler-audit
   coffee-rails (~> 4.1.0)
+  dalli
   dotenv-rails
   email_validator
   equalizer
   factory_girl_rails
+  faraday-http-cache
   flutie
   guard-rspec
   guard-rubocop
