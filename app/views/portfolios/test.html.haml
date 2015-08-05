@@ -99,7 +99,7 @@
                   %span.total= project.user_pull_requests.size
                   Accepted
               %ul
-                - project.user_triaged_issues.each do |issue|
+                - project.user_pull_requests.each do |issue|
                   %li.issue
                     .issue-number= issue.number
                     .issue-name= issue.name
