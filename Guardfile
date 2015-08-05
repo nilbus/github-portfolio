@@ -52,7 +52,7 @@ guard :rspec, cmd: "bin/rspec", all_on_start: true do
 end
 
 guard :shell do
-  watch %r{db/seeds.rb} do |_files|
+  watch %r{^db/seeds.rb} do |_files|
     if system 'bin/rake db:seed'
       n "Loaded successfully", 'seeds.rb', :success
       'seeds.rb loaded successfully'
@@ -60,5 +60,12 @@ guard :shell do
       n 'Failed to load seeds', 'seeds.rb', :failed
       'Failed to load seeds'
     end
+  end
+
+  watch %r{^spec/vcr_cassettes/.*\.yml$} do |files|
+    files = files.join(' ')
+    replace_command = %q(sed -i -re '/^\s+Authorization:/,+1d' )
+    puts "Removing Authorization headers from #{files}"
+    system "#{replace_command} #{files}"
   end
 end

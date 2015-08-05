@@ -1,0 +1,85 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/nilbus
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.0.1
+      Content-Type:
+      - application/json
+      If-Modified-Since:
+      - Thu, 30 Jul 2015 15:06:21 GMT
+      If-None-Match:
+      - '"f7b536e5953638ec34ad54bcf5dc7001"'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 05 Aug 2015 12:54:13 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4957'
+      X-Ratelimit-Reset:
+      - '1438781307'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Last-Modified:
+      - Thu, 30 Jul 2015 15:06:21 GMT
+      Etag:
+      - W/"35a2bef0215728caf985dc6763e94ed8"
+      X-Oauth-Scopes:
+      - ''
+      X-Accepted-Oauth-Scopes:
+      - user
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 41BE5257:44D3:D3446EF:55C20775
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - a7f8a126c9ed3f1c4715a34c0ddc7290
+    body:
+      encoding: ASCII-8BIT
+      string: '{"login":"nilbus","id":64751,"avatar_url":"https://avatars.githubusercontent.com/u/64751?v=3","gravatar_id":"","url":"https://api.github.com/users/nilbus","html_url":"https://github.com/nilbus","followers_url":"https://api.github.com/users/nilbus/followers","following_url":"https://api.github.com/users/nilbus/following{/other_user}","gists_url":"https://api.github.com/users/nilbus/gists{/gist_id}","starred_url":"https://api.github.com/users/nilbus/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/nilbus/subscriptions","organizations_url":"https://api.github.com/users/nilbus/orgs","repos_url":"https://api.github.com/users/nilbus/repos","events_url":"https://api.github.com/users/nilbus/events{/privacy}","received_events_url":"https://api.github.com/users/nilbus/received_events","type":"User","site_admin":false,"name":"Edward
+        Anderson","company":null,"blog":"www.nilbus.com","location":"Durham, NC","email":"nilbus@nilbus.com","hireable":false,"bio":null,"public_repos":74,"public_gists":59,"followers":49,"following":60,"created_at":"2009-03-19T01:30:37Z","updated_at":"2015-07-30T15:06:21Z"}'
+    http_version: 
+  recorded_at: Wed, 05 Aug 2015 12:54:13 GMT
+recorded_with: VCR 2.9.3
