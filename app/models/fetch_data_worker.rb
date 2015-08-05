@@ -7,7 +7,7 @@ class FetchDataWorker
   def perform(github_username)
     api = GithubAPI.new(token: api_token)
     user = api.user(github_username)
-    portfolio = Portfolio.new(user: user)
+    portfolio = Portfolio.new(user: user, header: Header.generic(user))
     PortfolioStore.new.save(portfolio)
     portfolio
   end

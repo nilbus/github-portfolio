@@ -1,7 +1,7 @@
 # A presenter value object that provides convenience methods to access all the
 # data needed to render a portfolio.
 class Portfolio
-  include ValueObject.new(:user)
+  include ValueObject.new(:user, :header)
 
   def name
     user.name
