@@ -5,6 +5,10 @@ class PortfolioStore
     Portfolio.load(data) if data
   end
 
+  def delete(github_username)
+    Rails.cache.delete(key_for(github_username))
+  end
+
   def key_for(github_username)
     "github_user:#{github_username}"
   end
