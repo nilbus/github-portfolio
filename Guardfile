@@ -50,3 +50,15 @@ guard :rspec, cmd: "bin/rspec", all_on_start: true do
   # # Always run the smoke test
   # watch(/.rb$/) { 'spec/controllers/portfolios_controller_spec.rb' }
 end
+
+guard :shell do
+  watch %r{db/seeds.rb} do |_files|
+    if system 'bin/rake db:seed'
+      n "Loaded successfully", 'seeds.rb', :success
+      'seeds.rb loaded successfully'
+    else
+      n 'Failed to load seeds', 'seeds.rb', :failed
+      'Failed to load seeds'
+    end
+  end
+end

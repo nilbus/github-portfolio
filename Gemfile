@@ -44,6 +44,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "guard-rspec"
   gem "guard-rubocop"
+  gem "guard-shell"
   gem "pry-rails"
   gem "rspec-rails", "~> 3.3.0"
 end

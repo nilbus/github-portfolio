@@ -121,6 +121,9 @@ GEM
     guard-rubocop (1.2.0)
       guard (~> 2.0)
       rubocop (~> 0.20)
+    guard-shell (0.7.1)
+      guard (>= 2.0.0)
+      guard-compat (~> 1.0)
     haml (4.0.6)
       tilt
     high_voltage (2.4.0)
@@ -328,6 +331,7 @@ DEPENDENCIES
   flutie
   guard-rspec
   guard-rubocop
+  guard-shell
   haml
   high_voltage
   i18n-tasks
