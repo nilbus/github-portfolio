@@ -46,7 +46,7 @@
               %ul
                 - project.user_commits.each do |commit|
                   %li.commit
-                    .commit-sha= link_to commit.sha, commit.url
+                    .commit-sha= link_to commit.short_sha, commit.url
                     .commit-message-subject= commit.message_subject
                     .commit-message-body= commit.message_body
         .overall-statistics
@@ -100,7 +100,7 @@
               %ul
                 - project.user_commits.each do |commit|
                   %li.commit
-                    .commit-sha= link_to commit.sha, commit.url
+                    .commit-sha= link_to commit.short_sha, commit.url
                     .commit-message-subject= commit.message_subject
                     .commit-message-body= commit.message_body
           - if project.user_comments.any?

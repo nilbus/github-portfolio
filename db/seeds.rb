@@ -23,6 +23,12 @@ comment = Comment.new(
   url: 'https://github.com/nilbus/handoff/pull/1#issuecomment-71632498',
   author: 'test',
 )
+commit = Commit.new(
+  sha: '6d1ad5f65777a59b73b09bf34cc06b0c1fec5998',
+  author: 'test',
+  message: "Refactor the god object\n\nNow instead, we have many gods.\n",
+  url: "https://github.com/nilbus/handoff/commit/74220568b66b912df499d0503678c287916b831c",
+)
 repo = Repo.new(
   author_commit_count_this_year: 1024,
   created_month_year: 'Aug 2008',
@@ -38,7 +44,7 @@ repo = Repo.new(
   issues: [issue, pull_request],
   issues_url: 'https://github.com/nilbus/Backbone.dualStorage/issues',
   user_comments: [comment],
-  user_commits: [],
+  user_commits: [commit],
   user_commits_url: '',
 )
 portfolio = Portfolio.new(
