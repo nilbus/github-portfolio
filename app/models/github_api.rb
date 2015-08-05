@@ -6,7 +6,7 @@
 #
 class GithubAPI
   def initialize(token: nil, cache: true)
-    @api = Octokit::Client.new token: token
+    @api = Octokit::Client.new access_token: token
     configure_cache if cache
   end
 
