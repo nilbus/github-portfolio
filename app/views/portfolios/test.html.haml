@@ -26,7 +26,7 @@
                 - project.user_resolved_issues.each do |issue|
                   %li.issue
                     .issue-number= link_to "##{issue.number}", issue.url
-                    .issue-name= issue.name
+                    .issue-title= issue.title
                     .issue-state= "(#{issue.state})"
           - if project.user_triaged_issues.any?
             %section.triaged-issues
@@ -37,7 +37,7 @@
                 - project.user_triaged_issues.each do |issue|
                   %li.issue
                     .issue-number= link_to "##{issue.number}", issue.url
-                    .issue-name= issue.name
+                    .issue-title= issue.title
                     .issue-state= "(#{issue.state})"
           - if project.user_commits.any?
             %section.user-commits
@@ -81,7 +81,7 @@
                 - project.user_pull_requests.each do |issue|
                   %li.issue
                     .issue-number= link_to "##{issue.number}", issue.url
-                    .issue-name= issue.name
+                    .issue-title= issue.title
                     .issue-state= "(#{issue.state})"
           - if project.user_opened_issues.any?
             %section.issues-opened
@@ -91,7 +91,7 @@
                 - project.user_opened_issues.each do |issue|
                   %li.issue
                     .issue-number= link_to "##{issue.number}", issue.url
-                    .issue-name= issue.name
+                    .issue-title= issue.title
                     .issue-state= "(#{issue.state})"
           - if project.user_commits.any?
             %section.user-commits

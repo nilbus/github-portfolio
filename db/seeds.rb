@@ -2,6 +2,22 @@ user = User.new(
   name: 'Linda Hand',
   login: 'test'
 )
+issue = Issue.new(
+  number: 1,
+  title: "Can't get you out of my head",
+  created_by: "test",
+  closed_by: "test",
+  state: "closed",
+  url: "https://github.com/nilbus/handoff/issues/1",
+)
+pull_request = Issue.new(
+  number: 2,
+  title: "Force remove you from my head",
+  created_by: "test",
+  closed_by: "test",
+  state: "closed",
+  url: "https://github.com/nilbus/handoff/pull/2",
+)
 comment = Comment.new(
   body: 'This is a great idea!',
   url: 'https://github.com/nilbus/handoff/pull/1#issuecomment-71632498',
@@ -19,7 +35,7 @@ repo = Repo.new(
   star_count: 10548,
   url: 'https://github.com/nilbus/Backbone.dualStorage',
   version: 'v1.4.0',
-  issues: [],
+  issues: [issue, pull_request],
   issues_url: 'https://github.com/nilbus/Backbone.dualStorage/issues',
   user_comments: [comment],
   user_commits: [],
