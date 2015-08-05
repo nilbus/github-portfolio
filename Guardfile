@@ -63,9 +63,11 @@ guard :shell do
   end
 
   watch %r{^spec/vcr_cassettes/.*\.yml$} do |files|
-    files = files.join(' ')
+    files.select! { |file| File.exist?(file) && File.read(file) =~ /^\s+Authorization:/ }
+    next if files.empty?
+    file_args = files.join(' ')
+    puts "Removing Authorization headers from #{file_args}"
     replace_command = %q(sed -i -re '/^\s+Authorization:/,+1d' )
-    puts "Removing Authorization headers from #{files}"
-    system "#{replace_command} #{files}"
+    system "#{replace_command} #{file_args}"
   end
 end
