@@ -1,12 +1,16 @@
 describe ValueObject do
   class SomeValue
     include ValueObject.new(:key, :value)
-    attr_accessor :key, :value
   end
 
   it 'includes Adamantium and Lift into classes that include it' do
     expect(SomeValue.ancestors).to include Adamantium
     expect(SomeValue.ancestors).to include Lift
+  end
+
+  it 'defines an attr_accessor for each provided attribute' do
+    expect(SomeValue.new).to respond_to :key
+    expect(SomeValue.new).to respond_to :value
   end
 
   describe '#==' do

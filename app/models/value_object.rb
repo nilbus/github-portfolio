@@ -28,6 +28,7 @@ class ValueObject < Module
       include Adamantium
       include Lift
       include Equalizer.new(*equalizer_attributes)
+      attr_accessor(*equalizer_attributes)
     end
   end
 end

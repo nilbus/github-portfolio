@@ -3,8 +3,6 @@
 class Portfolio
   include ValueObject.new(:user)
 
-  attr_accessor :user
-
   def name
     user.name
   end
