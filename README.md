@@ -1,3 +1,8 @@
+[![Circle
+CI](https://circleci.com/gh/nilbus/github-portfolio.svg?style=shield)](https://circleci.com/gh/nilbus/github-portfolio)
+[![Code
+Climate](https://codeclimate.com/github/nilbus/github-portfolio/badges/gpa.svg)](https://codeclimate.com/github/nilbus/github-portfolio)
+
 # GitHub Portfolio
 
 Generate a portfolio for your GitHub repository.
