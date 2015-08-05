@@ -9,13 +9,16 @@ repo = Repo.new(
   languages: ['Coffeescript', 'Javascript'],
   name: 'Backbone.dualStorage',
   release_age: '7 years',
+  releases_url: '',
   reporting_period: '3 months',
   star_count: 10548,
   url: 'https://github.com/nilbus/Backbone.dualStorage',
   version: 'v1.4.0',
   issues: [],
+  issues_url: 'https://github.com/nilbus/Backbone.dualStorage/issues',
   user_comments: [],
   user_commits: [],
+  user_commits_url: '',
 )
 portfolio = Portfolio.new(
   header: Header.generic(user),

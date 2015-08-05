@@ -5,14 +5,17 @@ class Repo
     created_month_year
     description
     issues
+    issues_url
     languages
     name
     release_age
+    releases_url
     reporting_period
     star_count
     url
     user_comments
     user_commits
+    user_commits_url
     version
   ))
 
