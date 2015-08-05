@@ -3,6 +3,11 @@
 class Portfolio
   include ValueObject.new(:user, :header, :user_repos, :other_repos)
 
+  def initialize(*)
+    super
+    self.header ||= Header.generic(user)
+  end
+
   def name
     user.name
   end
