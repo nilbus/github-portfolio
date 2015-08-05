@@ -6,12 +6,11 @@ class PortfoliosController < ApplicationController
     @github_username = params[:id]
     @portfolio = PortfolioStore.new.find(@github_username)
     respond_to do |format|
-      format.html do
-        return render :loading if @portfolio.nil?
-      end
+      format.html { render :loading if @portfolio.nil? }
       format.json do
         @portfolio = FetchDataWorker.new.perform(@github_username)
-        render json: {result: 'reload; portfolio serialization to json not yet supported'}
+        message = 'reload; portfolio serialization to json not yet supported'
+        render json: {result: message}
       end
     end
   end
