@@ -2,6 +2,11 @@ user = User.new(
   name: 'Linda Hand',
   login: 'test'
 )
+comment = Comment.new(
+  body: 'This is a great idea!',
+  url: 'https://github.com/nilbus/handoff/pull/1#issuecomment-71632498',
+  author: 'test',
+)
 repo = Repo.new(
   author_commit_count_this_year: 1024,
   created_month_year: 'Aug 2008',
@@ -16,7 +21,7 @@ repo = Repo.new(
   version: 'v1.4.0',
   issues: [],
   issues_url: 'https://github.com/nilbus/Backbone.dualStorage/issues',
-  user_comments: [],
+  user_comments: [comment],
   user_commits: [],
   user_commits_url: '',
 )
