@@ -7,130 +7,106 @@
   %section#my-projects
     - @portfolio.user_projects_with_user_activity.each do |project|
       .project
-        .name= project.name
-        .language= project.language
-        .star-count= project.star_count
-        .description= project.description
-        .role
+        .heading
+          .name= project.name
+          .language= "(#{project.language})"
           .role-title= project.user_role
-          .contribution-percent= project.user_contribution_percentage
+          .contribution-percent= "(#{project.user_contribution_percentage}%)"
+          .star-count= project.star_count
+        .sub-heading
+          .description= project.description
+          .time-period-duration= project.reporting_period
         .activity
-          %h2.time-period
-            Activity Last
-            %span.time-period-duration= project.reporting_period
           - if project.user_resolved_issues.any?
             %section.resolved-issues
-              %h3
-                Personally Resolved Issues and Pull Requests
-                .count-of-total-complete
-                  %span.complete= project.user_resolved_issues.size
-                  of
-                  %span.total= project.issues.size
+              %h4
+                Personally Resolved Issues and PR's
+                = " (#{project.user_resolved_issues.size} of #{project.issues.size})"
               %ul
                 - project.user_resolved_issues.each do |issue|
                   %li.issue
-                    .issue-number= issue.number
+                    .issue-number= link_to "##{issue.number}", issue.url
                     .issue-name= issue.name
-                    .issue-state= issue.state
+                    .issue-state= "(#{issue.state})"
           - if project.user_triaged_issues.any?
             %section.triaged-issues
-              %h3
-                Personally Triaged Issues and Pull Requests
-                .count-of-total-complete
-                  %span.complete= project.user_triaged_issues.size
-                  of
-                  %span.total= project.unresolved_issues.size
+              %h4
+                Personally Triaged Issues and PR's
+                = " (#{project.user_triaged_issues.size} of #{project.unresolved_issues.size})"
               %ul
                 - project.user_triaged_issues.each do |issue|
                   %li.issue
-                    .issue-number= issue.number
+                    .issue-number= link_to "##{issue.number}", issue.url
                     .issue-name= issue.name
-                    .issue-state= issue.state
+                    .issue-state= "(#{issue.state})"
           - if project.user_commits.any?
             %section.user-commits
-              %h3
-                Authored Commits
-                .count= project.user_commits.size
+              %h4
+                .count= "#{project.user_commits.size} commits"
               %ul
                 - project.user_commits.each do |commit|
                   %li.commit
-                    .commit-sha= commit.sha
+                    .commit-sha= link_to commit.sha, commit.url
                     .commit-message-subject= commit.message_subject
                     .commit-message-body= commit.message_body
         .overall-statistics
           %h2
             Overall Statistics
-            %ul
-              - if project.user_is_author?
-                %li.authored-commit-count
-                  Authored
-                  .commit-count= project.author_commit_count_this_year
-                  commits this year
-              - if project.version.present?
-                %li.version
-                  Version
-                  .version= project.version
-                %li.release-date
-                  Released
-                  .time-ago= project.release_age
-                  ago
-              %li
-                Created in
-                .date= project.created_month_year
+          %ul
+            - if project.user_is_author?
+              %li.authored-commit-count
+                = "Authored #{project.author_commit_count_this_year} commits this year"
+            %li.month-created
+              = "Created in #{project.created_month_year}"
+            - if project.version.present?
+              %li.release-date
+                = "Released #{project.release_age} ago"
+              %li.version
+                = "Version #{project.version}"
 - if @portfolio.other_projects_with_user_activity.any?
   %section#other-projects
     - @portfolio.other_projects_with_user_activity.each do |project|
       .project
-        .name= project.name
-        .language= project.language
-        .star-count= project.star_count
-        .description= project.description
-        .role
-          .role-title= project.user_role
-          .role-description= project.user_role_description
+        .heading
+          .name= project.name
+          .star-count= project.star_count
+        .sub-heading
+          .description= project.description
         .activity
           - if project.user_pull_requests.any?
             %section.pull-requests
-              %h3
-                Pull Requests
-                .count-of-total-complete
-                  %span.complete= project.user_pull_requests_accepted.size
-                  of
-                  %span.total= project.user_pull_requests.size
-                  Accepted
+              %h4
+                = "Pull Requests (#{project.user_pull_requests_accepted.size} of #{project.user_pull_requests.size} accepted)"
               %ul
                 - project.user_pull_requests.each do |issue|
                   %li.issue
-                    .issue-number= issue.number
+                    .issue-number= link_to "##{issue.number}", issue.url
                     .issue-name= issue.name
-                    .issue-state= issue.state
+                    .issue-state= "(#{issue.state})"
           - if project.user_opened_issues.any?
             %section.issues-opened
-              %h3
-                Issues Opened
-                .count= project.user_opened_issues.size
+              %h4
+                "Issues Opened (#{project.user_opened_issues.size})"
               %ul
                 - project.user_opened_issues.each do |issue|
                   %li.issue
-                    .issue-number= issue.number
+                    .issue-number= link_to "##{issue.number}", issue.url
                     .issue-name= issue.name
-                    .issue-state= issue.state
+                    .issue-state= "(#{issue.state})"
           - if project.user_commits.any?
             %section.user-commits
-              %h3
-                Authored Commits
-                .count= project.user_commits.size
+              %h4
+                "Authored Commits (#{project.user_commits.size})"
               %ul
                 - project.user_commits.each do |commit|
                   %li.commit
-                    .commit-sha= commit.sha
+                    .commit-sha= link_to commit.sha, commit.url
                     .commit-message-subject= commit.message_subject
                     .commit-message-body= commit.message_body
           - if project.user_comments.any?
             %section.user-comments
-              %h3
-                Recent Comments
-                .count= project.user_comments.size
+              %h4
+                "Recent Comments (#{project.user_comments.size})"
               %ul
                 - project.user_comments.each do |comment|
                   %li.comment
