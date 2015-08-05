@@ -14,4 +14,9 @@ class PortfoliosController < ApplicationController
       end
     end
   end
+
+  # For development: Render a full portfolio with fixture data
+  def test
+    @portfolio = PortfolioStore.new.find('test')
+  end
 end
