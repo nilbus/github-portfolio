@@ -1,8 +1,196 @@
 @charset "utf-8";
 
 @import "normalize-rails";
-@import "bourbon";
-@import "base/grid-settings";
-@import "neat";
-@import "base/base";
-@import "refills/flashes";
+
+body {
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  color: #000;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+a {
+  color: #8D8D8D;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#container {
+  width: 1200px;
+  margin: auto;
+  position: relative;
+  padding: 20px;
+  min-height:100%;
+}
+
+header.profile {
+  text-align: center;
+
+  h2 {
+    font-weight: 500;
+  }
+}
+
+.parens {
+  &:before { content: '(' }
+  &:after  { content: ')' }
+}
+
+section#my-projects, section#other-projects {
+  .project {
+    border: 1px solid #8A8A8A;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    padding: 10px 0;
+    margin: 20px 0;
+
+    > div, > h3, > h4 {
+      padding: 0 10px;
+    }
+
+    h3.heading, h4.heading {
+      .star-count {
+        float: right;
+
+        &:after {
+          content: '★'
+        }
+      }
+
+      .name, .language, .role-title, .contribution-percent {
+        display: inline;
+      }
+    }
+
+    .activity {
+      padding: 10px;
+
+      .issue {
+        .issue-number, .issue-title, .issue-state {
+          display: inline;
+        }
+      }
+
+      .commit {
+        .commit-sha, .commit-message-subject {
+          display: inline;
+        }
+      }
+    }
+  }
+}
+
+section#my-projects {
+  .project {
+    h3.heading {
+      .role-title, .contribution-percent, .star-count {
+        font-weight: 400;
+      }
+
+      .contribution-percent {
+        &:before { content: '(' }
+        &:after { content: '%)' }
+      }
+
+      .role-title:before {
+        content: '- '
+      }
+    }
+
+    .sub-heading {
+      .description {
+        display: inline-block;
+      }
+
+      .time-period-duration {
+        float: right;
+      }
+    }
+
+    .activity section {
+      width: 33%;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .overall-statistics {
+      border-top: 1px solid #CBCBCB;
+      padding-top: 10px;
+
+      ul {
+        white-space: nowrap;
+        line-height: 3em;
+        text-align: center;
+
+        li {
+          margin: 0;
+          padding: 0;
+          width: 25%;
+          display: inline-block;
+          text-align: center;
+
+          .label {
+            display: inline-block;
+            padding-left: .5em;
+            vertical-align: top;
+          }
+
+          &:before {
+            font-size: 1.5em;
+            font-family: 'Icomoon-Free';
+          }
+
+          &.authored-commit-count:before {
+            content: "\e907";
+          }
+
+          &.month-created:before {
+            content: "\e953";
+          }
+
+          &.release-date:before {
+            content: "\e94d";
+          }
+
+          &.version:before {
+            content: "\e9d2";
+          }
+        }
+      }
+    }
+  }
+}
+
+section#other-projects {
+  .project {
+    width: 32%;
+    display: inline-block;
+    margin-right: 1.8%;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

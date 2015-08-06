@@ -15,7 +15,9 @@
 </head>
 <body class="<%= body_class %>">
   <%= render "flashes" -%>
-  <%= yield %>
+  <div id="container">
+    <%= yield %>
+  </div>
   <%= render "javascript" %>
 </body>
 </html>
