@@ -8,6 +8,8 @@ class Header
       tagline: 'Code Portfolio',
       intro: <<-INTRO
         This is an auto-generated portfolio for the GitHub user #{user.login}.
+        Remember, only self-starred repositories that you own will appear here.
+        Starring your fork will highlight your contributions to the parent.
       INTRO
     )
   end

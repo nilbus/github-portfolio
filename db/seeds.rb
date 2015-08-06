@@ -31,14 +31,17 @@ commit = Commit.new(
 )
 repo = Repo.new(
   author_commit_count_this_year: 1024,
-  created_month_year: 'Aug 2008',
+  created_at: Time.parse('Aug 2008'),
   description: 'A dual (localStorage and REST) sync adapter for Backbone.js',
   languages: ['Coffeescript', 'Javascript'],
   name: 'Backbone.dualStorage',
+  owner_login: 'test',
   release_age: '7 years',
   releases_url: '',
   reporting_period: '3 months',
   star_count: 10548,
+  querying_user: user,
+  user_is_collaborator: true,
   url: 'https://github.com/nilbus/Backbone.dualStorage',
   version: 'v1.4.0',
   issues: [issue, pull_request],

@@ -53,7 +53,7 @@
           %h2
             Overall Statistics
           %ul
-            - if project.user_is_author?
+            - if project.user_is_owner?
               %li.authored-commit-count
                 = "Authored #{project.author_commit_count_this_year} commits this year"
             %li.month-created

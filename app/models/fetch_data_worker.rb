@@ -4,10 +4,19 @@
 # public access.
 #
 class FetchDataWorker
+  def initialize
+    @github = GithubAPI.new(token: api_token)
+  end
+
   def perform(github_username)
-    api = GithubAPI.new(token: api_token)
-    user = api.user(github_username)
-    portfolio = Portfolio.new(user: user, header: Header.generic(user))
+    user = @github.user(github_username)
+    repos = @github.self_starred_repos(github_username)
+    portfolio = Portfolio.new(
+      user: user,
+      header: Header.generic(user),
+      user_repos: @github.user_repos(repos),
+      other_repos: @github.other_repos(repos),
+    )
     PortfolioStore.new.save(portfolio)
     portfolio
   end

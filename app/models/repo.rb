@@ -2,22 +2,31 @@
 class Repo
   include ValueObject.new(*%i(
     author_commit_count_this_year
-    created_month_year
+    created_at
     description
+    full_name
     issues
     issues_url
+    primary_language
     languages
     name
+    owner_login
     release_age
     releases_url
     reporting_period
     star_count
     url
+    querying_user
+    user_is_collaborator
     user_comments
     user_commits
     user_commits_url
     version
   ))
+
+  def created_month_year
+    created_at.strftime('%b %Y')
+  end
 
   def language
     languages.first
@@ -47,8 +56,12 @@ class Repo
     []
   end
 
-  def user_is_author?
-    true
+  def user_is_owner?
+    querying_user.login == owner_login
+  end
+
+  def user_is_owner_or_collaborator?
+    user_is_owner? || user_is_collaborator
   end
 
   def pull_requests
