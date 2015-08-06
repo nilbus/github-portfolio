@@ -1,4 +1,115 @@
-=link_to 'reload', "/#{@github_username}/reload", class: 'reload-portfolio'
-%header
-  %h1= @github_username
-  %h1= @portfolio.name
+%header.profile
+  %h1= @portfolio.header.title
+  %h2= @portfolio.header.tagline
+  - @portfolio.header.intro.lines.each do |line|
+    %p= line
+- if @portfolio.user_projects_with_user_activity.any?
+  %section#my-projects
+    - @portfolio.user_projects_with_user_activity.each do |project|
+      .project
+        %h3.heading
+          .name= project.name
+          .language.parens= project.language
+          .role-title= project.user_role
+          .contribution-percent= project.user_contribution_percentage
+          .star-count= project.star_count
+        .sub-heading
+          .description= project.description
+          .time-period-duration= project.reporting_period
+        .activity
+          - if project.user_resolved_issues.any?
+            %section.resolved-issues
+              %h4
+                Personally Resolved Issues and PR's
+                %span.parens= "#{project.user_resolved_issues.size} of #{project.issues.size}"
+              %ul
+                - project.user_resolved_issues.each do |issue|
+                  %li.issue
+                    .issue-number= link_to "##{issue.number}", issue.url
+                    .issue-title= issue.title
+                    .issue-state.parens= issue.state
+          - if project.user_triaged_issues.any?
+            %section.triaged-issues
+              %h4
+                Personally Triaged Issues and PR's
+                %span.parens= "#{project.user_triaged_issues.size} of #{project.unresolved_issues.size}"
+              %ul
+                - project.user_triaged_issues.each do |issue|
+                  %li.issue
+                    .issue-number= link_to "##{issue.number}", issue.url
+                    .issue-title= issue.title
+                    .issue-state.parens= issue.state
+          - if project.user_commits.any?
+            %section.user-commits
+              %h4
+                .count= pluralize(project.user_commits.size, 'commit')
+              %ul
+                - project.user_commits.each do |commit|
+                  %li.commit
+                    .commit-sha= link_to commit.short_sha, commit.url
+                    .commit-message-subject= commit.message_subject
+                    .commit-message-body= commit.message_body
+        .overall-statistics
+          %ul
+            - if project.user_is_owner?
+              %li.authored-commit-count
+                .label= "Authored #{pluralize(project.author_commit_count_this_year, 'commit')} this year"
+            %li.month-created
+              .label= "Created in #{project.created_month_year}"
+            - if project.version.present?
+              %li.release-date
+                .label= "Released #{project.release_age} ago"
+              %li.version
+                .label= "Version #{project.version.sub('v', '')}"
+- if @portfolio.other_projects_with_user_activity.any?
+  %section#other-projects
+    - @portfolio.other_projects_with_user_activity.each do |project|
+      .project
+        %h4.heading
+          .name= project.name
+          .star-count= project.star_count
+        .sub-heading
+          .description= project.description
+        .activity
+          - if project.user_pull_requests.any?
+            %section.pull-requests
+              %h4
+                Pull Requests
+                %span.parens= "#{project.user_pull_requests_accepted.size} of #{project.user_pull_requests.size} accepted"
+              %ul
+                - project.user_pull_requests.each do |issue|
+                  %li.issue
+                    .issue-number= link_to "##{issue.number}", issue.url
+                    .issue-title= issue.title
+                    .issue-state.parens= issue.state
+          - if project.user_opened_issues.any?
+            %section.issues-opened
+              %h4
+                Issues Opened
+                %span.parens= project.user_opened_issues.size
+              %ul
+                - project.user_opened_issues.each do |issue|
+                  %li.issue
+                    .issue-number= link_to "##{issue.number}", issue.url
+                    .issue-title= issue.title
+                    .issue-state.parens= issue.state
+          - if project.user_commits.any?
+            %section.user-commits
+              %h4
+                Authored Commits
+                %span.parens= project.user_commits.size
+              %ul
+                - project.user_commits.each do |commit|
+                  %li.commit
+                    .commit-sha= link_to commit.short_sha, commit.url
+                    .commit-message-subject= commit.message_subject
+                    .commit-message-body= commit.message_body
+          - if project.user_comments.any?
+            %section.user-comments
+              %h4
+                Recent Comments
+                %span.parens= project.user_comments.size
+              %ul
+                - project.user_comments.each do |comment|
+                  %li.comment
+                    .comment-preview= comment.preview
