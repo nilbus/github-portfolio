@@ -10,5 +10,13 @@ describe Repo do
       repos = [owned_repo.(), other_repo.()]
       expect(Repo.group_by_ownership(repos)).to eq [[owned_repo.()], [other_repo.()]]
     end
+
+    it 'returns blank arrays for owned or other sets that are empty' do
+      owner = User.new(login: 'owner')
+      other = User.new(login: 'not me')
+      other_repo = ->{ Repo.new(querying_user: owner, owner_login: other.login, full_name: "#{owner.login}/repo") }
+      repos = [other_repo.()]
+      expect(Repo.group_by_ownership(repos)).to eq [[], [other_repo.()]]
+    end
   end
 end

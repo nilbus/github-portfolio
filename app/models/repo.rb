@@ -82,6 +82,10 @@ class Repo
   end
 
   def self.group_by_ownership(repos)
-    repos.group_by(&:user_is_owner_or_collaborator?).values
+    # rubocop:disable Style/DoubleNegation
+    groups = repos.group_by { |repo| !!repo.user_is_owner_or_collaborator? }
+    owned = groups[true] || []
+    other = groups[false] || []
+    [owned, other]
   end
 end

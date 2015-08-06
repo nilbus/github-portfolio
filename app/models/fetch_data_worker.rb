@@ -12,6 +12,8 @@ class FetchDataWorker
     user = @github.user(github_username)
     repos = @github.self_starred_repos(github_username)
     user_repos, other_repos = Repo.group_by_ownership(repos)
+    user_repos.each  { |repo| detail_user_repo!(repo) }
+    other_repos.each { |repo| detail_other_repo!(repo) }
     portfolio = Portfolio.new(
       user: user,
       header: Header.generic(user),
@@ -20,6 +22,33 @@ class FetchDataWorker
     )
     PortfolioStore.new.save(portfolio)
     portfolio
+  end
+
+  def detail_user_repo!(repo)
+    # TODO: Load recent authored commits
+    # TODO: Detect special language overrides (#1) and frameworks (#2)
+    # TODO: Load contribution stats
+    # TODO: Load RECENT issues & PRs
+    repo.issues = []
+    repo.user_commits = []
+    repo.user_comments = []
+    # TODO: Load release info
+  end
+
+  def detail_other_repo!(repo)
+    repo.issues = []
+    repo.user_commits = []
+    repo.user_comments = []
+    # # TODO: Load MY issues & PRs
+    # repo.issues = []
+    # repo.user_commits = []
+    # repo.user_comments = []
+    # reutrn if repo.issues.any?
+    # # TODO: Load recent authored commits
+    # repo.user_commits = []
+    # reutrn if repo.user_commits.any?
+    # # TODO: Load my comments
+    # repo.user_comments = []
   end
 
   def api_token
