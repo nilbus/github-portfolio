@@ -7,6 +7,8 @@
 class GithubAPI
   def initialize(token: nil, cache: true)
     @api = Octokit::Client.new access_token: token
+    @api.auto_paginate = true
+    @api.per_page = 100
     configure_cache if cache
   end
 
