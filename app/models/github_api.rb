@@ -59,6 +59,7 @@ class GithubAPI
       description: response.description,
       created_at: response.created_at,
       owner_login: response.owner.login,
+      primary_language: response.language,
       querying_user: User.new(login: github_username),
       star_count: response.stargazers,
       url: response.html_url,

@@ -29,7 +29,7 @@ class Repo
   end
 
   def language
-    languages.first
+    primary_language
   end
 
   def user_role
