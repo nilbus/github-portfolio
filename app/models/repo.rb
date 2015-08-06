@@ -1,6 +1,7 @@
 # A GitHub project and its data
 class Repo
-  include ValueObject.new(*%i(
+  include Entity.new(:full_name)
+  attr_accessor(*%i(
     author_commit_count_this_year
     created_at
     description
