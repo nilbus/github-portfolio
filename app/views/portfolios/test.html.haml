@@ -1,4 +1,4 @@
-%header
+%header.profile
   %h1= @portfolio.header.title
   %h2= @portfolio.header.tagline
   - @portfolio.header.intro.lines.each do |line|
@@ -7,11 +7,11 @@
   %section#my-projects
     - @portfolio.user_projects_with_user_activity.each do |project|
       .project
-        .heading
+        %h3.heading
           .name= project.name
           .language.parens= project.language
           .role-title= project.user_role
-          .contribution-percent.parens= project.user_contribution_percentage
+          .contribution-percent= project.user_contribution_percentage
           .star-count= project.star_count
         .sub-heading
           .description= project.description
@@ -21,7 +21,7 @@
             %section.resolved-issues
               %h4
                 Personally Resolved Issues and PR's
-                .parens= "#{project.user_resolved_issues.size} of #{project.issues.size}"
+                %span.parens= "#{project.user_resolved_issues.size} of #{project.issues.size}"
               %ul
                 - project.user_resolved_issues.each do |issue|
                   %li.issue
@@ -32,7 +32,7 @@
             %section.triaged-issues
               %h4
                 Personally Triaged Issues and PR's
-                .perens= "#{project.user_triaged_issues.size} of #{project.unresolved_issues.size}"
+                %span.parens= "#{project.user_triaged_issues.size} of #{project.unresolved_issues.size}"
               %ul
                 - project.user_triaged_issues.each do |issue|
                   %li.issue
@@ -42,7 +42,7 @@
           - if project.user_commits.any?
             %section.user-commits
               %h4
-                .count= "#{project.user_commits.size} commits"
+                .count= pluralize(project.user_commits.size, 'commit')
               %ul
                 - project.user_commits.each do |commit|
                   %li.commit
@@ -50,24 +50,22 @@
                     .commit-message-subject= commit.message_subject
                     .commit-message-body= commit.message_body
         .overall-statistics
-          %h2
-            Overall Statistics
           %ul
             - if project.user_is_author?
               %li.authored-commit-count
-                = "Authored #{project.author_commit_count_this_year} commits this year"
+                .label= "Authored #{pluralize(project.author_commit_count_this_year, 'commit')} this year"
             %li.month-created
-              = "Created in #{project.created_month_year}"
+              .label= "Created in #{project.created_month_year}"
             - if project.version.present?
               %li.release-date
-                = "Released #{project.release_age} ago"
+                .label= "Released #{project.release_age} ago"
               %li.version
-                = "Version #{project.version}"
+                .label= "Version #{project.version.sub('v', '')}"
 - if @portfolio.other_projects_with_user_activity.any?
   %section#other-projects
     - @portfolio.other_projects_with_user_activity.each do |project|
       .project
-        .heading
+        %h4.heading
           .name= project.name
           .star-count= project.star_count
         .sub-heading
@@ -77,7 +75,7 @@
             %section.pull-requests
               %h4
                 Pull Requests
-                .parens= "#{project.user_pull_requests_accepted.size} of #{project.user_pull_requests.size} accepted"
+                %span.parens= "#{project.user_pull_requests_accepted.size} of #{project.user_pull_requests.size} accepted"
               %ul
                 - project.user_pull_requests.each do |issue|
                   %li.issue
@@ -88,7 +86,7 @@
             %section.issues-opened
               %h4
                 Issues Opened
-                .parens= project.user_opened_issues.size
+                %span.parens= project.user_opened_issues.size
               %ul
                 - project.user_opened_issues.each do |issue|
                   %li.issue
@@ -99,7 +97,7 @@
             %section.user-commits
               %h4
                 Authored Commits
-                .parens= project.user_commits.size
+                %span.parens= project.user_commits.size
               %ul
                 - project.user_commits.each do |commit|
                   %li.commit
@@ -110,7 +108,7 @@
             %section.user-comments
               %h4
                 Recent Comments
-                .parens= project.user_comments.size
+                %span.parens= project.user_comments.size
               %ul
                 - project.user_comments.each do |comment|
                   %li.comment
