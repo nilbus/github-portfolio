@@ -80,4 +80,8 @@ class Repo
   def user_opened_issues
     issues
   end
+
+  def self.group_by_ownership(repos)
+    repos.group_by(&:user_is_owner_or_collaborator?).values
+  end
 end

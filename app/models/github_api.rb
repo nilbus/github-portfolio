@@ -36,14 +36,6 @@ class GithubAPI
     repos.union(starred)
   end
 
-  def user_repos(repos)
-    repos.select(&:user_is_owner_or_collaborator?)
-  end
-
-  def other_repos(repos)
-    repos.reject(&:user_is_owner_or_collaborator?)
-  end
-
   def check_collaborator?(repo, github_username)
     return true if repo.owner.login == github_username
     @api.collaborator?(repo_full_name, github_username)
