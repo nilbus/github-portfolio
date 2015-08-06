@@ -3,8 +3,11 @@
 #
 # Usage:
 #
-#     include ValueObject.new(:attribute1, :attribute2)
-#     attr_accessor :attribute1, :attribute2
+#     class MyValue
+#       include ValueObject.new(:attribute1, :attribute2)
+#     end
+#
+# ValueObject creates an attr_accessor for each attribute passed to the constructor.
 #
 # Value objects may only use or return other classes that are also immutable and have
 # no side effects.
