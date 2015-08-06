@@ -9,9 +9,9 @@
       .project
         .heading
           .name= project.name
-          .language= "(#{project.language})"
+          .language.parens= project.language
           .role-title= project.user_role
-          .contribution-percent= "(#{project.user_contribution_percentage}%)"
+          .contribution-percent.parens= project.user_contribution_percentage
           .star-count= project.star_count
         .sub-heading
           .description= project.description
@@ -21,24 +21,24 @@
             %section.resolved-issues
               %h4
                 Personally Resolved Issues and PR's
-                = " (#{project.user_resolved_issues.size} of #{project.issues.size})"
+                .parens= "#{project.user_resolved_issues.size} of #{project.issues.size}"
               %ul
                 - project.user_resolved_issues.each do |issue|
                   %li.issue
                     .issue-number= link_to "##{issue.number}", issue.url
                     .issue-title= issue.title
-                    .issue-state= "(#{issue.state})"
+                    .issue-state.parens= issue.state
           - if project.user_triaged_issues.any?
             %section.triaged-issues
               %h4
                 Personally Triaged Issues and PR's
-                = " (#{project.user_triaged_issues.size} of #{project.unresolved_issues.size})"
+                .perens= "#{project.user_triaged_issues.size} of #{project.unresolved_issues.size}"
               %ul
                 - project.user_triaged_issues.each do |issue|
                   %li.issue
                     .issue-number= link_to "##{issue.number}", issue.url
                     .issue-title= issue.title
-                    .issue-state= "(#{issue.state})"
+                    .issue-state.parens= issue.state
           - if project.user_commits.any?
             %section.user-commits
               %h4
@@ -76,27 +76,30 @@
           - if project.user_pull_requests.any?
             %section.pull-requests
               %h4
-                = "Pull Requests (#{project.user_pull_requests_accepted.size} of #{project.user_pull_requests.size} accepted)"
+                Pull Requests
+                .parens= "#{project.user_pull_requests_accepted.size} of #{project.user_pull_requests.size} accepted"
               %ul
                 - project.user_pull_requests.each do |issue|
                   %li.issue
                     .issue-number= link_to "##{issue.number}", issue.url
                     .issue-title= issue.title
-                    .issue-state= "(#{issue.state})"
+                    .issue-state.parens= issue.state
           - if project.user_opened_issues.any?
             %section.issues-opened
               %h4
-                "Issues Opened (#{project.user_opened_issues.size})"
+                Issues Opened
+                .parens= project.user_opened_issues.size
               %ul
                 - project.user_opened_issues.each do |issue|
                   %li.issue
                     .issue-number= link_to "##{issue.number}", issue.url
                     .issue-title= issue.title
-                    .issue-state= "(#{issue.state})"
+                    .issue-state.parens= issue.state
           - if project.user_commits.any?
             %section.user-commits
               %h4
-                "Authored Commits (#{project.user_commits.size})"
+                Authored Commits
+                .parens= project.user_commits.size
               %ul
                 - project.user_commits.each do |commit|
                   %li.commit
@@ -106,7 +109,8 @@
           - if project.user_comments.any?
             %section.user-comments
               %h4
-                "Recent Comments (#{project.user_comments.size})"
+                Recent Comments
+                .parens= project.user_comments.size
               %ul
                 - project.user_comments.each do |comment|
                   %li.comment
