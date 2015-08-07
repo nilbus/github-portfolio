@@ -9,11 +9,11 @@
     - @portfolio.user_projects_with_user_activity.each do |project|
       .project
         %h3.heading
+          .star-count= project.star_count
           .name= link_to project.name, project.url
           .language.parens= project.language
           .role-title= project.user_role
           .contribution-percent= project.user_contribution_percentage
-          .star-count= project.star_count
         .sub-heading
           .description= project.description
           .time-period-duration= project.reporting_period
@@ -67,8 +67,8 @@
     - @portfolio.other_projects_with_user_activity.each do |project|
       .project
         %h4.heading
-          .name= link_to project.full_name, project.url
           .star-count= project.star_count
+          .name= link_to project.full_name, project.url
         .sub-heading
           .description= project.description
         .activity
