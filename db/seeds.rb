@@ -30,7 +30,6 @@ commit = Commit.new(
   url: "https://github.com/nilbus/handoff/commit/74220568b66b912df499d0503678c287916b831c",
 )
 repo = Repo.new(
-  author_commit_count_this_year: 1024,
   created_at: Time.parse('Aug 2008'),
   description: 'A dual (localStorage and REST) sync adapter for Backbone.js',
   fork: false,
@@ -43,6 +42,7 @@ repo = Repo.new(
   reporting_period: '3 months',
   star_count: 10548,
   querying_user: user,
+  total_commit_count: 1999,
   user_is_collaborator: true,
   url: 'https://github.com/nilbus/Backbone.dualStorage',
   version: 'v1.4.0',

@@ -2,7 +2,6 @@
 class Repo
   include Entity.new(:full_name)
   attr_accessor(*%i(
-    author_commit_count_this_year
     created_at
     description
     fork
@@ -19,6 +18,7 @@ class Repo
     star_count
     url
     querying_user
+    total_commit_count
     user_is_collaborator
     user_comments
     user_commits

@@ -52,9 +52,8 @@
                     .commit-message-body= commit.message_body
         .overall-statistics
           %ul
-            - if project.user_is_owner?
-              %li.authored-commit-count
-                .label= "Authored #{pluralize(project.author_commit_count_this_year, 'commit')} this year"
+            %li.total-commit-count
+              .label= "#{pluralize(project.total_commit_count, 'commit')}"
             %li.month-created
               .label= "Created in #{project.created_month_year}"
             - if project.version.present?
