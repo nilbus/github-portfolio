@@ -1,8 +1,9 @@
 %header.profile
   %h1= @portfolio.header.title
   %h2= @portfolio.header.tagline
-  - @portfolio.header.intro.lines.each do |line|
-    %p= line
+  .intro
+    - @portfolio.header.intro.lines.each do |line|
+      %p= line
 - if @portfolio.user_projects_with_user_activity.any?
   %section#my-projects
     - @portfolio.user_projects_with_user_activity.each do |project|
