@@ -7,6 +7,7 @@ issue = Issue.new(
   title: "Can't get you out of my head",
   created_by: "test",
   closed_by: "test",
+  repo: "nilbus/handoff",
   state: "closed",
   url: "https://github.com/nilbus/handoff/issues/1",
 )

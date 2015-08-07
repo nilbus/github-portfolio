@@ -52,6 +52,30 @@ class GithubAPI
     end
   end
 
+  def user_issues(repo:)
+    @api.list_issues(repo.full_name, state: :all).map do |issue_response|
+      issue_from_response(issue_response, repo_full_name: repo.full_name)
+    end
+  end
+
+  # Given an Issue, return a new Issue with closed_by detail
+  def issue_detail(issue:)
+    issue_response = @api.issue(issue.repo, issue.number)
+    issue_from_response(issue_response, repo_full_name: issue.repo)
+  end
+
+  def with_max(max)
+    max = max.to_i
+    if max > 100 || max <= 0
+      fail ArgumentError, "max must be <= 100, GitHub's maximum per_page value"
+    end
+    previous_values = @api.auto_paginate, @api.per_page
+    @api.auto_paginate, @api.per_page = false, max
+    yield
+  ensure
+    @api.auto_paginate, @api.per_page = previous_values
+  end
+
   private
 
   # rubocop:disable Metrics/MethodLength
@@ -70,6 +94,18 @@ class GithubAPI
     )
   end
   # rubocop:enable Metrics/MethodLength
+
+  def issue_from_response(response, repo_full_name:)
+    Issue.new(
+      number: response.number,
+      title: response.title,
+      created_by: response.user.login,
+      pull_request: response.pull_request.present?,
+      repo: repo_full_name,
+      state: response.state,
+      url: response.html_url,
+    )
+  end
 
   def configure_cache
     @api.middleware = prepend_middleware_to(Octokit.middleware) do |builder|
