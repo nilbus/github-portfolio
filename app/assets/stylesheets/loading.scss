@@ -1,14 +1,14 @@
 #loading-screen {
   .message {
     position: fixed;
-    top: 50%;
+    top: 45%;
     left: 0;
     right: 0;
     text-align: center;
     font-style: normal;
     font-size: 1.25em;
 
-    &.flash-notice em {
+    em {
       font-weight: 500;
       font-style: normal;
     }

@@ -3,11 +3,15 @@ header.profile {
 
   h2 {
     font-weight: 500;
+    margin: .2em;
   }
 
   .intro {
-    margin: 1em auto 2em;
+    margin: 2em auto 3em;
     width: 60%;
+    line-height: 1.7em;
+    font-size: 1.2em;
+    font-weight: 200;
   }
 }
 
