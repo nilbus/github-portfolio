@@ -2,6 +2,12 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")
+Rails.application.config.assets.precompile += [
+  'icomoon-free/icomoon.eot',
+  'icomoon-free/icomoon.svg',
+  'icomoon-free/icomoon.woff',
+  'icomoon-free/icomoon.ttf'
+]
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
