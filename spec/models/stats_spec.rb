@@ -49,6 +49,40 @@ describe Stats do
       it { is_expected.to eq 7066 }
     end
 
+    describe '#commits_authored_percentage' do
+      subject { stats.commits_authored_percentage }
+      it { is_expected.to eq 69 }
+    end
+
+    describe '#lines_added_percentage' do
+      subject { stats.lines_added_percentage }
+      it { is_expected.to eq 60 }
+    end
+
+    describe '#contribution_rank_by_commits' do
+      subject { stats.contribution_rank_by_commits }
+      it { is_expected.to eq 1 }
+    end
+
+    describe '#tier' do
+      subject { stats.tier }
+      it { is_expected.to eq 5 }
+
+      it 'rounds up to the nearest 5 for numbers < 30' do
+        expect(stats.tier(1)).to eq 5
+        expect(stats.tier(5)).to eq 5
+        expect(stats.tier(6)).to eq 10
+        expect(stats.tier(29)).to eq 30
+        expect(stats.tier(30)).to eq 30
+      end
+
+      it 'rounds up to the nearest 10 for numbers > 30' do
+        expect(stats.tier(31)).to eq 40
+        expect(stats.tier(35)).to eq 40
+        expect(stats.tier(41)).to eq 50
+      end
+    end
+
     context 'with no user given' do
       let(:user) { nil }
 

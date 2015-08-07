@@ -34,16 +34,35 @@ class Repo
     primary_language
   end
 
-  def user_role
-    'Mystery Contributor'
+  def user_contribution_percentage
+    [stats.commits_authored_percentage, stats.lines_added_percentage].max
   end
+
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def user_role
+    case
+    when stats.commit_count_user == stats.commit_count_total
+      'Sole Author'
+    when stats.commits_authored_percentage >= 75
+      'Main Author'
+    when stats.commits_authored_percentage >= 50
+      'Primary Contributor'
+    when stats.contribution_rank_by_commits == 1
+      'Largest Contributor'
+    when stats.contribution_rank_by_commits >= stats.total_contributors / 2.0
+      "Top #{stats.tier} Contributor"
+    when stats.commits_authored_percentage >= 20 || stats.commit_count_user >= 10
+      'Solid Contributor'
+    else
+      'Casual Contributor'
+    end
+  end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   def user_role_description
     'did some stuff'
-  end
-
-  def user_contribution_percentage
-    -1
   end
 
   def user_resolved_issues

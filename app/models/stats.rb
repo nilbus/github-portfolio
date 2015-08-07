@@ -27,6 +27,37 @@ class Stats
   end
   memoize :addition_count_user
 
+  def commits_authored_percentage
+    return 0 unless stats
+    (100.0 * commit_count_user / commit_count_total).round
+  end
+
+  def lines_added_percentage
+    return 0 unless stats
+    (100.0 * addition_count_user / addition_count_total).round
+  end
+
+  # Returns a 1-based rank for the querying user, 1 being the highest contributor
+  def contribution_rank_by_commits
+    return 0 unless stats && user
+    sorted_stats = stats.sort_by { |stat| stat[:total] }.reverse
+    sorted_stats.index { |stat| stat[:author][:login] == user.login } + 1
+  end
+  memoize :contribution_rank_by_commits
+
+  def tier(rank = contribution_rank_by_commits)
+    bracket_width =
+      case
+      when rank >= 100
+        100
+      when rank >= 30
+        10
+      else
+        5
+      end
+    (rank / bracket_width.to_f).ceil * bracket_width
+  end
+
   def inspect
     fields = %i(
       commit_count_total
