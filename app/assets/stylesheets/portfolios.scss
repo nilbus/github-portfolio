@@ -141,9 +141,10 @@ section#other-projects {
   .project {
     width: 32%;
     display: inline-block;
-    margin-right: 1.8%;
+    margin-right: 1.6%;
+    vertical-align: top;
 
-    &:last-child {
+    &:nth-child(3n) {
       margin-right: 0;
     }
   }
