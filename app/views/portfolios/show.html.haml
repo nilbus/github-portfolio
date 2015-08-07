@@ -67,7 +67,7 @@
     - @portfolio.other_projects_with_user_activity.each do |project|
       .project
         %h4.heading
-          .name= project.name
+          .name= project.full_name
           .star-count= project.star_count
         .sub-heading
           .description= project.description
