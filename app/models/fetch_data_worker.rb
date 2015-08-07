@@ -35,12 +35,13 @@ class FetchDataWorker
   def detail_user_repo!(repo)
     issues = @github.with_max(100) { @github.user_issues(repo: repo) }
     repo.issues = issues.map { |issue| @github.issue_detail(issue: issue) }
-    # TODO: Load recent authored commits
+    repo.user_commits = @github.with_max(5) do
+      @github.user_commits(repo: repo)
+    end
     # TODO: Load contribution stats
     # TODO: Calculate total commit count
     # TODO: Load release info
     # TODO: Detect special language overrides (#1) and frameworks (#2)
-    repo.user_commits = []
     repo.user_comments = []
   end
 

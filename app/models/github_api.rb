@@ -64,6 +64,11 @@ class GithubAPI # rubocop:disable Metrics/ClassLength
     issue_from_response(issue_response, repo_full_name: issue.repo)
   end
 
+  def user_commits(repo:)
+    commits_response = @api.commits(repo.full_name, author: @github_username)
+    commits_response.map { |response_commit| commit_from_response(response_commit) }
+  end
+
   def with_max(max)
     max = max.to_i
     if max > 100 || max <= 0
@@ -128,6 +133,15 @@ class GithubAPI # rubocop:disable Metrics/ClassLength
       @api.issue_comments(repo_full_name, issue_response.number)
     end
     comments.count { |comment| comment.user.login == @github_username }
+  end
+
+  def commit_from_response(response_commit)
+    Commit.new(
+      sha: response_commit.sha,
+      author: user_from_response_user(response_commit.author),
+      message: response_commit.commit.message,
+      url: response_commit.html_url,
+    )
   end
 
   def configure_cache

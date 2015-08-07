@@ -24,7 +24,7 @@
                 Personally Resolved Issues and PRs
                 %span.parens= "#{project.user_resolved_issues.size} of #{project.issues.size}"
               %ul
-                - project.user_resolved_issues.each do |issue|
+                - project.user_resolved_issues[0,5].each do |issue|
                   %li.issue
                     .issue-number= link_to "##{issue.number}", issue.url
                     .issue-title= issue.title
@@ -35,7 +35,7 @@
                 Personally Triaged Issues and PRs
                 %span.parens= "#{project.user_triaged_issues.size} of #{project.unresolved_issue_count}"
               %ul
-                - project.user_triaged_issues.each do |issue|
+                - project.user_triaged_issues[0,5].each do |issue|
                   %li.issue
                     .issue-number= link_to "##{issue.number}", issue.url
                     .issue-title= issue.title
@@ -43,13 +43,13 @@
           - if project.user_commits.any?
             %section.user-commits
               %h4
-                .count= pluralize(project.user_commits.size, 'commit')
+                .count= "#{pluralize(0, 'Commit')} Authored"
               %ul
                 - project.user_commits.each do |commit|
                   %li.commit
                     .commit-sha= link_to commit.short_sha, commit.url
                     .commit-message-subject= commit.message_subject
-                    .commit-message-body= commit.message_body
+                    -# .commit-message-body= commit.message_body
         .overall-statistics
           %ul
             %li.total-commit-count
