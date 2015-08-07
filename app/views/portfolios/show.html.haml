@@ -9,7 +9,7 @@
     - @portfolio.user_projects_with_user_activity.each do |project|
       .project
         %h3.heading
-          .name= project.name
+          .name= link_to project.name, project.url
           .language.parens= project.language
           .role-title= project.user_role
           .contribution-percent= project.user_contribution_percentage
@@ -67,7 +67,7 @@
     - @portfolio.other_projects_with_user_activity.each do |project|
       .project
         %h4.heading
-          .name= project.full_name
+          .name= link_to project.full_name, project.url
           .star-count= project.star_count
         .sub-heading
           .description= project.description
