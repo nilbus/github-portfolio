@@ -4,15 +4,15 @@
 # public access.
 #
 class FetchDataWorker
-  def initialize
-    @github = GithubAPI.new(token: api_token)
+  def initialize(github_username)
+    @github = GithubAPI.new(github_username: github_username, token: api_token)
   end
 
-  def perform(github_username) # rubocop:disable Metrics/MethodLength
-    user = @github.user(github_username)
-    repos = @github.self_starred_repos(github_username)
+  def perform # rubocop:disable Metrics/MethodLength
+    user = @github.user
+    repos = @github.self_starred_repos
     reporting_repos = repos.map do |repo|
-      @github.substitute_parent_for_fork(repo, github_username: github_username)
+      @github.substitute_parent_for_fork(repo)
     end
     user_repos, other_repos = Repo.group_by_ownership(reporting_repos)
     user_repos.each  { |repo| detail_user_repo!(repo) }
