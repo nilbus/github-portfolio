@@ -33,7 +33,7 @@ class GithubAPI
   def self_starred_repos(github_username)
     repos = Set.new(public_repos(github_username))
     starred = Set.new(starred_repos(github_username))
-    repos.union(starred)
+    repos.intersection(starred)
   end
 
   def check_collaborator?(repo, github_username)
