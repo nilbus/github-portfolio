@@ -4,7 +4,7 @@
 # aggregate calls to fetch a single piece of information, when the API does not
 # provide that information directly.
 #
-class GithubAPI
+class GithubAPI # rubocop:disable Metrics/ClassLength
   def initialize(github_username:, token: nil, cache: true)
     @github_username = github_username
     @api = Octokit::Client.new access_token: token
@@ -86,25 +86,48 @@ class GithubAPI
       description: response.description,
       created_at: response.created_at,
       fork: response.fork,
-      owner_login: response.owner.login,
+      owner: user_from_response_user(response.owner),
       primary_language: response.language,
       querying_user: User.new(login: @github_username),
       star_count: response.stargazers_count,
       url: response.html_url,
     )
   end
-  # rubocop:enable Metrics/MethodLength
 
+  # rubocop:disable Metrics/AbcSize
   def issue_from_response(response, repo_full_name:)
+    if response.state == 'open'
+      user_comment_count = issue_comment_count_by_user(
+        issue_response: response,
+        repo_full_name: repo_full_name,
+      )
+    end
     Issue.new(
       number: response.number,
       title: response.title,
-      created_by: response.user.login,
+      assigned_to: user_from_response_user(response.assignee),
+      closed_by: user_from_response_user(response.closed_by),
+      created_by: user_from_response_user(response.user),
+      has_user_commentary: user_comment_count && user_comment_count > 0,
       pull_request: response.pull_request.present?,
       repo: repo_full_name,
       state: response.state,
       url: response.html_url,
     )
+  end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
+
+  def user_from_response_user(response_user)
+    return nil unless response_user.present?
+    User.new(login: response_user.login, name: response_user.name.presence)
+  end
+
+  def issue_comment_count_by_user(issue_response:, repo_full_name:)
+    comments = with_max(100) do
+      @api.issue_comments(repo_full_name, issue_response.number)
+    end
+    comments.count { |comment| comment.user.login == @github_username }
   end
 
   def configure_cache

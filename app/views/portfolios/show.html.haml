@@ -33,7 +33,7 @@
             %section.triaged-issues
               %h4
                 Personally Triaged Issues and PRs
-                %span.parens= "#{project.user_triaged_issues.size} of #{project.unresolved_issues.size}"
+                %span.parens= "#{project.user_triaged_issues.size} of #{project.unresolved_issue_count}"
               %ul
                 - project.user_triaged_issues.each do |issue|
                   %li.issue

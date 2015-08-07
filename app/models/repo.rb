@@ -11,7 +11,7 @@ class Repo
     primary_language
     languages
     name
-    owner_login
+    owner
     release_age
     releases_url
     reporting_period
@@ -47,19 +47,22 @@ class Repo
   end
 
   def user_resolved_issues
-    issues
+    issues.select { |issue| issue.resolved_by?(querying_user) }
   end
 
   def user_triaged_issues
-    issues
+    issues.select do |issue|
+      issue.open? &&
+        (issue.user_commentary? || issue.created_by?(querying_user))
+    end
   end
 
-  def unresolved_issues
-    []
+  def unresolved_issue_count
+    issues.count(&:open?)
   end
 
   def user_is_owner?
-    querying_user.login == owner_login
+    querying_user == owner
   end
 
   def user_is_owner_or_collaborator?
