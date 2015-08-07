@@ -29,6 +29,10 @@ section#my-projects, section#other-projects {
     }
 
     h3.heading, h4.heading {
+      a {
+        color: #000000;
+      }
+
       .star-count {
         float: right;
 
@@ -63,7 +67,7 @@ section#my-projects, section#other-projects {
 section#my-projects {
   .project {
     h3.heading {
-      .role-title, .contribution-percent, .star-count {
+      .language, .role-title, .contribution-percent, .star-count {
         font-weight: 400;
       }
 
@@ -150,6 +154,10 @@ section#other-projects {
 
     &:nth-child(3n) {
       margin-right: 0;
+    }
+
+    a {
+
     }
   }
 }
