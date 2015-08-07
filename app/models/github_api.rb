@@ -97,6 +97,24 @@ class GithubAPI
     Stats.new(user: @querying_user, contribution_stats_response: stats_data)
   end
 
+  def version(repo:)
+    version_from_release_object(repo: repo) || version_from_tag(repo: repo)
+  end
+
+  def version_from_release_object(repo:)
+    release = @api.latest_release(repo.full_name)
+    Version.new(name: release.name, date: release.published_at)
+  rescue Octokit::NotFound
+    nil
+  end
+
+  def version_from_tag(repo:)
+    tag = @api.tags(repo.full_name).find { |t| t.name =~ /^v?\d+\./ }
+    return if tag.nil?
+    commit = @api.commit(repo.full_name, tag.commit.sha)
+    Version.new(name: tag.name, date: commit.commit.committer.date)
+  end
+
   def with_max(max)
     max = max.to_i
     if max > 100 || max <= 0

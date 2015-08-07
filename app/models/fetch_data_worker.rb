@@ -39,7 +39,7 @@ class FetchDataWorker
       @github.user_commits(repo: repo)
     end
     repo.stats = @github.contributors_stats(repo: repo)
-    # TODO: Load release info
+    repo.version = @github.version(repo: repo)
     # TODO: Detect special language overrides (#1) and frameworks (#2)
     repo.user_comments = []
   end

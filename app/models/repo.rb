@@ -12,7 +12,6 @@ class Repo
     languages
     name
     owner
-    release_age
     releases_url
     reporting_period
     star_count
@@ -60,10 +59,6 @@ class Repo
   end
   # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
-
-  def user_role_description
-    'did some stuff'
-  end
 
   def user_resolved_issues
     issues.select { |issue| issue.resolved_by?(querying_user) }

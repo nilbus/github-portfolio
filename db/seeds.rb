@@ -32,6 +32,7 @@ commit = Commit.new(
   message: "Refactor the god object\n\nNow instead, we have many gods.\n",
   url: "https://github.com/nilbus/handoff/commit/74220568b66b912df499d0503678c287916b831c",
 )
+version = Version.new(name: 'v1.4.0', date: 3.months.ago.to_time)
 repo = Repo.new(
   created_at: Time.parse('Aug 2008'),
   description: 'A dual (localStorage and REST) sync adapter for Backbone.js',
@@ -40,7 +41,6 @@ repo = Repo.new(
   languages: ['Javascript', 'Coffeescript'],
   name: 'Backbone.dualStorage',
   owner: user,
-  release_age: '7 years',
   releases_url: '',
   reporting_period: '3 months',
   star_count: 10548,
@@ -48,7 +48,7 @@ repo = Repo.new(
   stats: Stats.new,
   user_is_collaborator: true,
   url: 'https://github.com/nilbus/Backbone.dualStorage',
-  version: 'v1.4.0',
+  version: version,
   issues: [issue, pull_request],
   issues_url: 'https://github.com/nilbus/Backbone.dualStorage/issues',
   user_comments: [comment],
