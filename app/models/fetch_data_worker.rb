@@ -33,14 +33,15 @@ class FetchDataWorker
   end
 
   def detail_user_repo!(repo)
-    # TODO: Load recent authored commits
-    # TODO: Detect special language overrides (#1) and frameworks (#2)
-    # TODO: Load contribution stats
     # TODO: Load RECENT issues & PRs
+    # TODO: Load recent authored commits
+    # TODO: Load contribution stats
+    # TODO: Calculate total commit count
+    # TODO: Load release info
+    # TODO: Detect special language overrides (#1) and frameworks (#2)
     repo.issues = []
     repo.user_commits = []
     repo.user_comments = []
-    # TODO: Load release info
   end
 
   def detail_other_repo!(repo)
