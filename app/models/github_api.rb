@@ -45,18 +45,21 @@ class GithubAPI
 
   private
 
+  # rubocop:disable Metrics/MethodLength
   def repo_from_response(response, github_username:)
     Repo.new(
+      full_name: response.full_name,
       name: response.name,
       description: response.description,
       created_at: response.created_at,
       owner_login: response.owner.login,
       primary_language: response.language,
       querying_user: User.new(login: github_username),
-      star_count: response.stargazers,
+      star_count: response.stargazers_count,
       url: response.html_url,
     )
   end
+  # rubocop:enable Metrics/MethodLength
 
   def configure_cache
     @api.middleware = prepend_middleware_to(Octokit.middleware) do |builder|
