@@ -34,15 +34,15 @@ class Repo
   end
 
   def user_role
-    'Sole Author'
+    'Mystery Contributor'
   end
 
   def user_role_description
-    'authored every commit'
+    'did some stuff'
   end
 
   def user_contribution_percentage
-    100
+    -1
   end
 
   def user_resolved_issues
