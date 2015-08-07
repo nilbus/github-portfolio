@@ -1,4 +1,8 @@
-.message.flash-error{style: 'display: none;'}
-.message.flash-notice
-  Loading profile for
-  %em.username{id: 'user-missing-portfolio', data: {github_username: @github_username}}= @github_username
+#loading-screen
+  .message.flash-error{style: 'display: none;'}
+  .message.flash-notice.loading
+    Loading profile for
+    %em.username{id: 'user-missing-portfolio', data: {github_username: @github_username}}= @github_username
+    %span.e1 .
+    %span.e2 .
+    %span.e3 .

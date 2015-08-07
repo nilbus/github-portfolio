@@ -1,0 +1,59 @@
+#loading-screen {
+  .message {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-style: normal;
+    font-size: 1.25em;
+
+    &.flash-notice em {
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    &.loading {
+      .e1, .e2, .e3 {
+        opacity: 0;
+        -webkit-animation: dot 1.3s infinite;
+        -moz-animation: dot 1.3s infinite;
+        -o-animation: dot 1.3s infinite;
+        animation: dot 1.3s infinite;
+      }
+
+      .e1 {
+        -webkit-animation-delay: 0.0s;
+        -moz-animation-delay: 0.0s;
+        -o-animation-delay: 0.0s;
+        animation-delay: 0.0s;
+      }
+
+      .e2 {
+        -webkit-animation-delay: 0.2s;
+        -moz-animation-delay: 0.2s;
+        -o-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+      }
+
+      .e3 {
+        -webkit-animation-delay: 0.3s;
+        -moz-animation-delay: 0.3s;
+        -o-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+      }
+
+      @-webkit-keyframes dot {
+        0% { opacity: 0; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      @keyframes dot {
+        0% { opacity: 0; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+    }
+  }
+}
