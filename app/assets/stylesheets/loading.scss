@@ -16,10 +16,10 @@
     &.loading {
       .e1, .e2, .e3 {
         opacity: 0;
-        -webkit-animation: dot 1.3s infinite;
-        -moz-animation: dot 1.3s infinite;
-        -o-animation: dot 1.3s infinite;
-        animation: dot 1.3s infinite;
+        -webkit-animation: dot 2.0s infinite;
+        -moz-animation: dot 2.0s infinite;
+        -o-animation: dot 2.0s infinite;
+        animation: dot 2.0s infinite;
       }
 
       .e1 {
