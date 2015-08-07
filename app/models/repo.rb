@@ -5,6 +5,7 @@ class Repo
     author_commit_count_this_year
     created_at
     description
+    fork
     full_name
     issues
     issues_url

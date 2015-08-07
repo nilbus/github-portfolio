@@ -11,7 +11,10 @@ class FetchDataWorker
   def perform(github_username) # rubocop:disable Metrics/MethodLength
     user = @github.user(github_username)
     repos = @github.self_starred_repos(github_username)
-    user_repos, other_repos = Repo.group_by_ownership(repos)
+    reporting_repos = repos.map do |repo|
+      @github.substitute_parent_for_fork(repo, github_username: github_username)
+    end
+    user_repos, other_repos = Repo.group_by_ownership(reporting_repos)
     user_repos.each  { |repo| detail_user_repo!(repo) }
     other_repos.each { |repo| detail_other_repo!(repo) }
     portfolio = Portfolio.new(

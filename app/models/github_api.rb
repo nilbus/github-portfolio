@@ -43,32 +43,33 @@ class GithubAPI
     false
   end
 
+  def substitute_parent_for_fork(repo, github_username:)
+    if repo.fork
+      repo_from_response(@api.repo(repo.full_name).parent,
+                         github_username: github_username)
+    else
+      repo
+    end
+  end
+
   private
 
   # rubocop:disable Metrics/MethodLength
   def repo_from_response(response, github_username:)
-    repo = substitute_parent_for_fork(response)
     Repo.new(
-      full_name: repo.full_name,
-      name: repo.name,
-      description: repo.description,
-      created_at: repo.created_at,
-      owner_login: repo.owner.login,
-      primary_language: repo.language,
+      full_name: response.full_name,
+      name: response.name,
+      description: response.description,
+      created_at: response.created_at,
+      fork: response.fork,
+      owner_login: response.owner.login,
+      primary_language: response.language,
       querying_user: User.new(login: github_username),
-      star_count: repo.stargazers_count,
-      url: repo.html_url,
+      star_count: response.stargazers_count,
+      url: response.html_url,
     )
   end
   # rubocop:enable Metrics/MethodLength
-
-  def substitute_parent_for_fork(repo_response)
-    if repo_response.fork
-      @api.repo(repo_response.full_name).parent
-    else
-      repo_response
-    end
-  end
 
   def configure_cache
     @api.middleware = prepend_middleware_to(Octokit.middleware) do |builder|

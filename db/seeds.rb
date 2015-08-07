@@ -33,6 +33,7 @@ repo = Repo.new(
   author_commit_count_this_year: 1024,
   created_at: Time.parse('Aug 2008'),
   description: 'A dual (localStorage and REST) sync adapter for Backbone.js',
+  fork: false,
   primary_language: 'Coffeescript',
   languages: ['Javascript', 'Coffeescript'],
   name: 'Backbone.dualStorage',
