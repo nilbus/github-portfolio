@@ -13,6 +13,8 @@ Style/Documentation:
   Exclude:
     - 'app/controllers/**/*'
     - 'app/helpers/**.*'
+Style/ParallelAssignment:
+  Enabled: false
 Style/SpaceInsideHashLiteralBraces:
   Enabled: false
 Style/TrailingComma:
