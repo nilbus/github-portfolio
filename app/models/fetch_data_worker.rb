@@ -8,15 +8,9 @@ class FetchDataWorker
     @github = GithubAPI.new(github_username: github_username, token: api_token)
   end
 
-  def perform # rubocop:disable Metrics/MethodLength
+  def perform
     user = @github.user
-    repos = @github.self_starred_repos
-    reporting_repos = repos.map do |repo|
-      @github.substitute_parent_for_fork(repo)
-    end
-    user_repos, other_repos = Repo.group_by_ownership(reporting_repos)
-    user_repos.each  { |repo| detail_user_repo!(repo) }
-    other_repos.each { |repo| detail_other_repo!(repo) }
+    user_repos, other_repos = fetch_revelant_repos_with_data
     portfolio = Portfolio.new(
       user: user,
       header: Header.generic(user),
@@ -25,6 +19,17 @@ class FetchDataWorker
     )
     PortfolioStore.new.save(portfolio)
     portfolio
+  end
+
+  def fetch_revelant_repos_with_data
+    repos = @github.self_starred_repos
+    reporting_repos = repos.map do |repo|
+      @github.substitute_parent_for_fork(repo)
+    end
+    user_repos, other_repos = Repo.group_by_ownership(reporting_repos)
+    user_repos.each  { |repo| detail_user_repo!(repo) }
+    other_repos.each { |repo| detail_other_repo!(repo) }
+    [user_repos, other_repos]
   end
 
   def detail_user_repo!(repo)
