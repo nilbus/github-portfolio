@@ -18,7 +18,7 @@ class Repo
     star_count
     url
     querying_user
-    total_commit_count
+    stats
     user_is_collaborator
     user_comments
     user_commits

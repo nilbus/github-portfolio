@@ -43,7 +43,7 @@
           - if project.user_commits.any?
             %section.user-commits
               %h4
-                .count= "#{pluralize(0, 'Commit')} Authored"
+                .count= "#{pluralize(project.stats.commit_count_user, 'Commit')} Authored"
               %ul
                 - project.user_commits.each do |commit|
                   %li.commit
@@ -53,7 +53,7 @@
         .overall-statistics
           %ul
             %li.total-commit-count
-              .label= "#{pluralize(project.total_commit_count, 'commit')}"
+              .label= "#{pluralize(project.stats.commit_count_total, 'commit')}"
             %li.month-created
               .label= "Created in #{project.created_month_year}"
             - if project.version.present?

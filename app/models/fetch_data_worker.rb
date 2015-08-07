@@ -9,11 +9,11 @@ class FetchDataWorker
   end
 
   def perform
-    user = @github.user
+    @user = @github.user
     user_repos, other_repos = fetch_revelant_repos_with_data
     portfolio = Portfolio.new(
-      user: user,
-      header: Header.generic(user),
+      user: @user,
+      header: Header.generic(@user),
       user_repos: user_repos.sort_by(&:star_count).reverse,
       other_repos: other_repos,
     )
@@ -38,8 +38,7 @@ class FetchDataWorker
     repo.user_commits = @github.with_max(5) do
       @github.user_commits(repo: repo)
     end
-    # TODO: Load contribution stats
-    # TODO: Calculate total commit count
+    repo.stats = @github.contributors_stats(repo: repo)
     # TODO: Load release info
     # TODO: Detect special language overrides (#1) and frameworks (#2)
     repo.user_comments = []

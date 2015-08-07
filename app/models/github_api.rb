@@ -4,11 +4,13 @@
 # aggregate calls to fetch a single piece of information, when the API does not
 # provide that information directly.
 #
+# rubocop:disable Metrics/ClassLength
+#
 class GithubAPI
   def initialize(github_username:, token: nil, cache: true)
     @github_username = github_username
-    querying_user = User.new(login: github_username)
-    @object_from = ResponseObjectConverter.new(querying_user: querying_user)
+    @querying_user = User.new(login: github_username)
+    @object_from = ResponseObjectConverter.new(querying_user: @querying_user)
     @api = Octokit::Client.new access_token: token
     @api.auto_paginate = true
     @api.per_page = 100
@@ -86,6 +88,13 @@ class GithubAPI
       @api.issue_comments(repo_full_name, issue_response.number)
     end
     comments.count { |comment| comment.user.login == @github_username }
+  end
+
+  def contributors_stats(repo:)
+    stats_response = @api.contributors_stats(repo.full_name)
+    return Stats.new if stats_response.nil? # stats not ready
+    stats_data = stats_response.map(&:to_attrs)
+    Stats.new(user: @querying_user, contribution_stats_response: stats_data)
   end
 
   def with_max(max)

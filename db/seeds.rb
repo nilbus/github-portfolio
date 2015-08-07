@@ -45,7 +45,7 @@ repo = Repo.new(
   reporting_period: '3 months',
   star_count: 10548,
   querying_user: user,
-  total_commit_count: 1999,
+  stats: Stats.new,
   user_is_collaborator: true,
   url: 'https://github.com/nilbus/Backbone.dualStorage',
   version: 'v1.4.0',
