@@ -99,11 +99,10 @@ section#my-projects {
 
     .overall-statistics {
       border-top: 1px solid #CBCBCB;
-      padding-top: 1.2em;
+      padding: 1.2em 0 0.5em 0;
 
       ul {
         white-space: nowrap;
-        line-height: 2.5em;
         text-align: center;
 
         li {
@@ -117,30 +116,32 @@ section#my-projects {
             display: inline-block;
             font-size: 1.2em;
             padding-left: .5em;
-            vertical-align: top;
+            vertical-align: middle;
           }
 
-          @mixin icon-size {
+          @mixin statistic-icon {
             font-size: 2em;
+            line-height: 1.2;
+            vertical-align: middle;
           }
 
           &.total-commit-count:before {
-            @include icon-size;
+            @include statistic-icon;
             @include icomoon-quill;
           }
 
           &.project-created:before {
-            @include icon-size;
+            @include statistic-icon;
             @include icomoon-github3;
           }
 
           &.release-age:before {
-            @include icon-size;
+            @include statistic-icon;
             @include icomoon-history;
           }
 
           &.version:before {
-            @include icon-size;
+            @include statistic-icon;
             @include icomoon-price-tag;
           }
         }
