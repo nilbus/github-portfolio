@@ -33,7 +33,7 @@ class FetchDataWorker
   end
 
   def detail_user_repo!(repo)
-    issues = @github.with_max(100) { @github.user_issues(repo: repo) }
+    issues = @github.with_max(100) { @github.issues(repo: repo) }
     repo.issues = issues.map { |issue| @github.issue_detail(issue: issue) }
     repo.user_commits = @github.with_max(5) do
       @github.user_commits(repo: repo)

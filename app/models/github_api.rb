@@ -56,7 +56,7 @@ class GithubAPI
     end
   end
 
-  def user_issues(repo:, limit: nil)
+  def issues(repo:, limit: nil)
     with_max(limit) do
       @api.list_issues(repo.full_name, state: :all).map do |response_issue|
         @object_from.issue(response_issue, repo_full_name: repo.full_name)
@@ -64,9 +64,27 @@ class GithubAPI
     end
   end
 
+  def user_issues(repo:, limit: nil)
+    with_max(limit) do
+      issues = @api.list_issues(
+        repo.full_name,
+        state: :all,
+        creator: @github_username,
+      )
+      issues.map do |response_issue|
+        @object_from.issue(response_issue, repo_full_name: repo.full_name)
+      end
+    end
+  end
+
   def user_pull_requests(repo:, limit: nil)
     with_max(limit) do
-      @api.pull_requests(repo.full_name, state: :all).map do |response_issue|
+      issues = @api.pull_requests(
+        repo.full_name,
+        state: :all,
+        creator: @github_username,
+      )
+      issues.map do |response_issue|
         @object_from.issue(response_issue, repo_full_name: repo.full_name, pr: true)
       end
     end
