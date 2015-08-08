@@ -1,0 +1,48 @@
+@font-face
+  font-family: 'icomoon'
+  src: font-url('icomoon-free/icomoon.eot')
+  src: font-url('icomoon-free/icomoon.eot?#iefix') format("embedded-opentype"), font-url('icomoon-free/icomoon.svg#icomoon') format("svg"), font-url('icomoon-free/icomoon.woff') format("woff"), font-url('icomoon-free/icomoon.ttf') format("truetype")
+  font-weight: normal
+  font-style: normal
+
+
+@mixin icomoon
+  font-family: 'icomoon'
+  font-style: normal
+  speak: none
+  font-weight: normal
+  line-height: 1
+  -webkit-font-smoothing: antialiased
+
+@mixin icomoon-quill
+  @include icomoon
+  content: "\e600"
+
+@mixin icomoon-price-tag
+  @include icomoon
+  content: "\e601"
+
+@mixin icomoon-history
+  @include icomoon
+  content: "\e602"
+
+@mixin icomoon-calendar
+  @include icomoon
+  content: "\e603"
+
+@mixin icomoon-rocket
+  @include icomoon
+  content: "\e604"
+
+@mixin icomoon-bookmark
+  @include icomoon
+  content: "\e605"
+
+@mixin icomoon-embed2
+  @include icomoon
+  content: "\e606"
+
+@mixin icomoon-github3
+  @include icomoon
+  content: "\e607"
+

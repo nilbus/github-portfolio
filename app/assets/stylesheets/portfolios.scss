@@ -99,11 +99,11 @@ section#my-projects {
 
     .overall-statistics {
       border-top: 1px solid #CBCBCB;
-      padding-top: 10px;
+      padding-top: 1.2em;
 
       ul {
         white-space: nowrap;
-        line-height: 3em;
+        line-height: 2.5em;
         text-align: center;
 
         li {
@@ -115,29 +115,33 @@ section#my-projects {
 
           .label {
             display: inline-block;
+            font-size: 1.2em;
             padding-left: .5em;
             vertical-align: top;
           }
 
-          &:before {
-            font-size: 1.5em;
-            font-family: 'Icomoon-Free';
+          @mixin icon-size {
+            font-size: 2em;
           }
 
           &.total-commit-count:before {
-            content: "\e907";
+            @include icon-size;
+            @include icomoon-quill;
           }
 
-          &.month-created:before {
-            content: "\e953";
+          &.project-created:before {
+            @include icon-size;
+            @include icomoon-github3;
           }
 
-          &.release-date:before {
-            content: "\e94d";
+          &.release-age:before {
+            @include icon-size;
+            @include icomoon-history;
           }
 
           &.version:before {
-            content: "\e9d2";
+            @include icon-size;
+            @include icomoon-price-tag;
           }
         }
       }

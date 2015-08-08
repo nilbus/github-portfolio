@@ -57,12 +57,12 @@
           %ul
             %li.total-commit-count
               .label= "#{pluralize(project.stats.commit_count_total, 'commit')}"
-            %li.month-created
+            %li.project-created
               .label= "Created #{project.created_month_year}"
             - if project.version.present?
               %li.version
                 .label= "Version #{project.version}"
-              %li.release-date
+              %li.release-age
                 .label= "Released #{project.version.age} ago"
 - if @portfolio.other_projects_with_user_activity.any?
   %section#other-projects
