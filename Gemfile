@@ -59,5 +59,4 @@ end
 
 group :staging, :production do
   gem "dalli"
-  gem "rack-timeout"
 end

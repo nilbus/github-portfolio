@@ -89,4 +89,3 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: ENV.fetch("HOST") }
 end
-Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
