@@ -21,8 +21,9 @@ class LoadingPage
     )
 
   initializeMasonryLayout: ->
-    $('#other-projects').masonry
-      gutterWidth: 22
-      itemSelector: '.project'
+    $(window).load ->
+      $('#other-projects').masonry
+        gutterWidth: 22
+        itemSelector: '.project'
 
 new LoadingPage().checkForMissingPortfolio()
