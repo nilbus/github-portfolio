@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root 'portfolios#index'
+  if (default_portfolio = ENV['PORTFOLIO'])
+    root 'portfolios#show', id: default_portfolio
+  else
+    root 'portfolios#index'
+  end
   get '/test', to: 'portfolios#test'
   get '/:id', to: 'portfolios#show'
   get '/:id/reload', to: 'portfolios#reload'
