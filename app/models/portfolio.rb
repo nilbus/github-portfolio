@@ -17,11 +17,21 @@ class Portfolio
   end
 
   def user_projects_with_user_activity
-    user_repos.select(&:reports_activity?)
+    repos = user_repos.select(&:reports_activity?)
+    maximums = {
+      commit_count: repos.map { |repo| repo.stats.commit_count_user }.max,
+      star_count: repos.map(&:star_count).max,
+    }
+    repos.sort_by { |repo| -repo.relevance(maximums: maximums) }
   end
 
   def other_projects_with_user_activity
-    other_repos.select(&:reports_activity?)
+    repos = other_repos.select(&:reports_activity?)
+    maximums = {
+      commit_count: repos.map { |repo| repo.user_commits.size }.max,
+      star_count: repos.map(&:star_count).max,
+    }
+    repos.sort_by { |repo| -repo.relevance(maximums: maximums) }
   end
 
   def serialize
