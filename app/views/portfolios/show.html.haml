@@ -9,7 +9,7 @@
     - @portfolio.user_projects_with_user_activity.each do |project|
       .project
         %h3.heading
-          .star-count= project.star_count
+          .star-count= number_with_delimiter project.star_count
           .name= link_to project.name, project.url
           .language.parens= project.language
           .role-title= project.user_role
@@ -66,7 +66,7 @@
     - @portfolio.other_projects_with_user_activity.each do |project|
       .project
         %h4.heading
-          .star-count= project.star_count
+          .star-count= number_with_delimiter project.star_count
           .name= link_to project.full_name, project.url
         .sub-heading
           .description= project.description
