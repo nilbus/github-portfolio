@@ -55,14 +55,13 @@
                     -# .commit-message-body= commit.message_body
         .overall-statistics
           %ul
-            - if project.version.present?
-              %li.version
-                .label= "Version #{project.version}"
             %li.total-commit-count
               .label= "#{pluralize(project.stats.commit_count_total, 'commit')}"
             %li.project-created
               .label= "Created #{project.created_month_year}"
             - if project.version.present?
+              %li.version
+                .label= "Version #{project.version}"
               %li.release-age
                 .label= "Released #{project.version.age} ago"
 - if @portfolio.other_projects_with_user_activity.any?
