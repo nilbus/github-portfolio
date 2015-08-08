@@ -83,6 +83,11 @@ describe Stats do
       end
     end
 
+    describe '#total_contributors' do
+      subject { stats.total_contributors }
+      it { is_expected.to eq 5 }
+    end
+
     context 'with no user given' do
       let(:user) { nil }
 
