@@ -149,15 +149,7 @@ section#other-projects {
   .project {
     width: 32%;
     display: inline-block;
-    margin-right: 1.6%;
     vertical-align: top;
-
-    &:nth-child(3n) {
-      margin-right: 0;
-    }
-
-    a {
-
-    }
+    margin-bottom: 0;
   }
 }

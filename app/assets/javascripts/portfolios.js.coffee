@@ -2,6 +2,7 @@ class LoadingPage
   checkForMissingPortfolio: ->
     @userMissingPortfolio = $('#user-missing-portfolio').data('github-username')
     @loadMissingPortfolio(@userMissingPortfolio) if @userMissingPortfolio
+    @initializeMasonryLayout()
 
   loadMissingPortfolio: (githubUsername) ->
     $.ajax
@@ -18,5 +19,10 @@ class LoadingPage
       "There was a problem loading the portfolio for <em>#{@userMissingPortfolio}</em>. " +
       "Maybe try again?"
     )
+
+  initializeMasonryLayout: ->
+    $('#other-projects').masonry
+      gutterWidth: 22
+      itemSelector: '.project'
 
 new LoadingPage().checkForMissingPortfolio()

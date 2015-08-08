@@ -157,6 +157,8 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    masonry-rails (0.2.4)
+      railties
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (0.8.2)
@@ -340,6 +342,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   lift
+  masonry-rails
   neat (~> 1.7.0)
   newrelic_rpm (>= 3.9.8)
   normalize-rails (~> 3.0.0)
