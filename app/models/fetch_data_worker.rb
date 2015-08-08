@@ -45,17 +45,14 @@ class FetchDataWorker
   end
 
   def detail_other_repo!(repo)
-    repo.issues = []
     repo.user_commits = []
     repo.user_comments = []
-    # # TODO: Load MY issues & PRs
-    # repo.issues = []
-    # repo.user_commits = []
-    # repo.user_comments = []
-    # reutrn if repo.issues.any?
-    # # TODO: Load recent authored commits
-    # repo.user_commits = []
-    # reutrn if repo.user_commits.any?
+    repo.issues = @github.user_pull_requests(repo: repo)
+    return if repo.issues.any?
+    repo.issues = @github.user_issues(repo: repo)
+    return if repo.issues.any?
+    repo.user_commits = @github.user_commits(repo: repo)
+    # return if repo.user_commits.any?
     # # TODO: Load my comments
     # repo.user_comments = []
   end

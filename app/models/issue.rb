@@ -33,4 +33,8 @@ class Issue
   def resolved?
     state == 'closed' || state == 'merged'
   end
+
+  def merged?
+    state == 'merged'
+  end
 end

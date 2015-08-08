@@ -84,19 +84,25 @@ class Repo
   end
 
   def pull_requests
-    issues
+    issues.select(&:pull_request)
   end
 
   def user_pull_requests
-    pull_requests
+    pull_requests.select { |pull_request| pull_request.created_by == querying_user }
   end
 
   def user_pull_requests_accepted
-    user_pull_requests
+    user_pull_requests.select(&:merged?)
   end
 
   def user_opened_issues
-    issues
+    issues.select do |issue|
+      !issue.pull_request && issue.created_by == querying_user
+    end
+  end
+
+  def reports_activity?
+    user_pull_requests.any? || user_opened_issues.any? || user_commits.any?
   end
 
   def self.group_by_ownership(repos)

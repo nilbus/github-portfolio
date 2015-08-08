@@ -17,7 +17,7 @@ class Portfolio
   end
 
   def other_projects_with_user_activity
-    other_repos
+    other_repos.select(&:reports_activity?)
   end
 
   def serialize

@@ -99,7 +99,7 @@
                 Authored Commits
                 %span.parens= project.user_commits.size
               %ul
-                - project.user_commits.each do |commit|
+                - project.user_commits[0,5].each do |commit|
                   %li.commit
                     .commit-sha= link_to commit.short_sha, commit.url
                     .commit-message-subject= commit.message_subject

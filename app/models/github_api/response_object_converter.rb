@@ -23,7 +23,8 @@ class GithubAPI::ResponseObjectConverter
     )
   end
 
-  def issue(response, repo_full_name:, user_comment_count: nil)
+  # rubocop:disable Metrics/AbcSize
+  def issue(response, repo_full_name:, user_comment_count: nil, pr: nil)
     Issue.new(
       number: response.number,
       title: response.title,
@@ -31,12 +32,13 @@ class GithubAPI::ResponseObjectConverter
       closed_by: user(response.closed_by),
       created_by: user(response.user),
       has_user_commentary: user_comment_count && user_comment_count > 0,
-      pull_request: response.pull_request.present?,
+      pull_request: pr || response.pull_request.present?,
       repo: repo_full_name,
-      state: response.state,
+      state: response.merged_at ? 'merged' : response.state,
       url: response.html_url,
     )
   end
+  # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength
 
   def user(response_user)

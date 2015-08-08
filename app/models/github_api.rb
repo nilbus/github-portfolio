@@ -56,9 +56,19 @@ class GithubAPI
     end
   end
 
-  def user_issues(repo:)
-    @api.list_issues(repo.full_name, state: :all).map do |response_issue|
-      @object_from.issue(response_issue, repo_full_name: repo.full_name)
+  def user_issues(repo:, limit: nil)
+    with_max(limit) do
+      @api.list_issues(repo.full_name, state: :all).map do |response_issue|
+        @object_from.issue(response_issue, repo_full_name: repo.full_name)
+      end
+    end
+  end
+
+  def user_pull_requests(repo:, limit: nil)
+    with_max(limit) do
+      @api.pull_requests(repo.full_name, state: :all).map do |response_issue|
+        @object_from.issue(response_issue, repo_full_name: repo.full_name, pr: true)
+      end
     end
   end
 
@@ -108,7 +118,7 @@ class GithubAPI
     nil
   end
 
-  def version_from_tag(repo:)
+  def version_from_tag(repo:) # rubocop:disable Metrics/AbcSize
     tag = @api.tags(repo.full_name).find { |t| t.name =~ /^v?\d+\./ }
     return if tag.nil?
     commit = @api.commit(repo.full_name, tag.commit.sha)
@@ -116,6 +126,7 @@ class GithubAPI
   end
 
   def with_max(max)
+    return yield if max.nil?
     max = max.to_i
     if max > 100 || max <= 0
       fail ArgumentError, "max must be <= 100, GitHub's maximum per_page value"
