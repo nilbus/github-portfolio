@@ -1,3 +1,6 @@
+- content_for :head do
+  = branding_css(@branding)
+
 %header.profile
   %h1= @portfolio.header.title
   %h2= @portfolio.header.tagline

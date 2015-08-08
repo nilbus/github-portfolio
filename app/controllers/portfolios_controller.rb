@@ -5,6 +5,7 @@ class PortfoliosController < ApplicationController
   def show
     @github_username = params[:id]
     @portfolio = PortfolioStore.new.find(@github_username)
+    @branding = Branding.new(branding_params)
     respond_to do |format|
       format.html { render :loading if @portfolio.nil? }
       format.json do
@@ -25,5 +26,9 @@ class PortfoliosController < ApplicationController
   def test
     @portfolio = PortfolioStore.new.find('test')
     render :show
+  end
+
+  private def branding_params
+    params.slice(:color)
   end
 end
