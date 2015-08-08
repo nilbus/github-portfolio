@@ -9,6 +9,7 @@ AllCops:
     - 'lib/**/*'
     - 'spec/**/*'
     - 'app/helpers/flashes_helper.rb'
+    - 'vendor/**/*'
 Style/Documentation:
   Exclude:
     - 'app/controllers/**/*'
