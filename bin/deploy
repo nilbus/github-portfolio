@@ -1,0 +1,18 @@
+#!/bin/bash -x
+
+if [[ "$1" != production ]]; then
+  exit 0
+fi
+
+ssh $DEPLOY_USER@$HOST "
+  set -o errexit
+  cd github-portfolio
+  git pull
+  export RAILS_ENV=production
+  export HOST=$HOST
+  export SECRET_KEY_BASE=temp_insecure
+  bundle
+  rake assets:precompile
+  (echo flush_all; sleep 1) | telnet localhost 11211 || true
+  touch tmp/restart.txt
+"
