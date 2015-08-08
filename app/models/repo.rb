@@ -25,6 +25,14 @@ class Repo
     version
   ))
 
+  def self.group_by_ownership(repos)
+    # rubocop:disable Style/DoubleNegation
+    groups = repos.group_by { |repo| !!repo.user_is_owner_or_collaborator? }
+    owned = groups[true] || []
+    other = groups[false] || []
+    [owned, other]
+  end
+
   def created_month_year
     created_at.strftime('%b %Y')
   end
@@ -106,11 +114,5 @@ class Repo
       user_resolved_issues.any? || user_triaged_issues.any?
   end
 
-  def self.group_by_ownership(repos)
-    # rubocop:disable Style/DoubleNegation
-    groups = repos.group_by { |repo| !!repo.user_is_owner_or_collaborator? }
-    owned = groups[true] || []
-    other = groups[false] || []
-    [owned, other]
   end
 end

@@ -3,6 +3,10 @@
 class Portfolio
   include ValueObject.new(:user, :header, :user_repos, :other_repos)
 
+  def self.load(serialized_user)
+    Marshal.load(serialized_user)
+  end
+
   def initialize(*)
     super
     self.header ||= Header.generic(user)
@@ -22,9 +26,5 @@ class Portfolio
 
   def serialize
     Marshal.dump(self)
-  end
-
-  def self.load(serialized_user)
-    Marshal.load(serialized_user)
   end
 end
