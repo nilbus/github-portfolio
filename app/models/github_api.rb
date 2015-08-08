@@ -77,15 +77,18 @@ class GithubAPI
     end
   end
 
-  def user_pull_requests(repo:, limit: nil)
-    with_max(limit) do
-      issues = @api.pull_requests(
+  def user_pull_requests(repo:, limit: nil) # rubocop:disable Metrics/MethodLength
+    with_max(limit && 100) do
+      issues = @api.issues(
         repo.full_name,
         state: :all,
         creator: @github_username,
       )
-      issues.map do |response_issue|
-        @object_from.issue(response_issue, repo_full_name: repo.full_name, pr: true)
+      pull_requests = issues.select(&:pull_request)
+      pull_requests = pull_requests[0, limit] if limit.present?
+      pull_requests.map do |response_issue|
+        pr_response = @api.pull_request(repo.full_name, response_issue.number)
+        @object_from.issue(pr_response, repo_full_name: repo.full_name, pr: true)
       end
     end
   end
