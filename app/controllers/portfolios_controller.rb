@@ -29,6 +29,6 @@ class PortfoliosController < ApplicationController
   end
 
   private def branding_params
-    params.slice(:color)
+    params.slice(:hue)
   end
 end

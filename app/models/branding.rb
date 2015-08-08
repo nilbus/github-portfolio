@@ -1,9 +1,9 @@
 class Branding
   def initialize(params)
-    @color = params[:color] || 'D75F03'
+    @hue = params[:hue] || Rails.application.secrets[:hue] || 20
   end
 
   def color
-    '#' + @color
+    "hsl(#{@hue}, 97%, 43%)"
   end
 end
