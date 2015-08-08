@@ -102,7 +102,8 @@ class Repo
   end
 
   def reports_activity?
-    user_pull_requests.any? || user_opened_issues.any? || user_commits.any?
+    user_pull_requests.any? || user_opened_issues.any? || user_commits.any? ||
+      user_resolved_issues.any? || user_triaged_issues.any?
   end
 
   def self.group_by_ownership(repos)

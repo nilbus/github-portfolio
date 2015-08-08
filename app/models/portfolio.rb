@@ -13,7 +13,7 @@ class Portfolio
   end
 
   def user_projects_with_user_activity
-    user_repos
+    user_repos.select(&:reports_activity?)
   end
 
   def other_projects_with_user_activity
