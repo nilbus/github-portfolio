@@ -13,7 +13,7 @@ class FetchDataWorker
     user_repos, other_repos = fetch_revelant_repos_with_data
     portfolio = Portfolio.new(
       user: @user,
-      header: Header.generic(@user),
+      header: Header.for(@user),
       user_repos: user_repos.sort_by(&:star_count).reverse,
       other_repos: other_repos,
     )

@@ -1,6 +1,17 @@
 # A header holds data for display at the top of a portfolio page
-class Header
-  include ValueObject.new(:title, :tagline, :intro)
+#
+# Attributes:
+#  * github_username : string
+#  * title           : string
+#  * tagline         : string
+#  * intro           : text
+#
+class Header < ActiveRecord::Base
+  validates :github_username, uniqueness: true
+
+  def self.for(user)
+    find_by(github_username: user.login) || generic(user)
+  end
 
   def self.generic(user)
     Header.new(
