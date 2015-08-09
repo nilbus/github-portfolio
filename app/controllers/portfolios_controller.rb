@@ -17,8 +17,7 @@ class PortfoliosController < ApplicationController
 
   def reload
     @github_username = params[:id]
-    PortfolioStore.new.delete(@github_username)
-    redirect_to "/#{@github_username}"
+    render :loading
   end
 
   # For development: Render a full portfolio with fixture data

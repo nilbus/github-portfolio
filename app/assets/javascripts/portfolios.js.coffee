@@ -7,11 +7,11 @@ class LoadingPage
   loadMissingPortfolio: (githubUsername) ->
     $.ajax
       url: "/portfolios/#{githubUsername}.json"
-      success: @reloadPage
+      success: @reload
       error: @displayError
 
-  reloadPage: ->
-    document.location.reload true
+  reload: =>
+    document.location = "/#{@userMissingPortfolio}"
 
   displayError: =>
     $('.message').hide()
