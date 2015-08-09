@@ -160,5 +160,20 @@ section#other-projects {
     vertical-align: top;
     margin-bottom: 0;
     box-shadow: 0 2px 2px 0 rgba(50, 50, 50, 0.45);
+
+    &:before {
+      content: '';
+      height: 2px;
+      -webkit-border-top-right-radius: 30px;
+      -moz-border-top-right-radius: 30px;
+      border-top-right-radius: 30px;
+      -webkit-border-top-left-radius: 30px;
+      -moz-border-top-left-radius: 30px;
+      border-top-left-radius: 30px;
+      position: absolute;
+      top: 0;
+      left: 1px;
+      right: 2px;
+    }
   }
 }
