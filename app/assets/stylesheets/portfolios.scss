@@ -23,6 +23,9 @@ section#my-projects, section#other-projects {
     border-radius: 7px;
     padding: 10px 0;
     margin: 20px 0;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(50, 50, 50, 0.45);
+    -moz-box-shadow: 0 2px 5px 0 rgba(50, 50, 50, 0.45);
+    box-shadow: 0 2px 5px 0 rgba(50, 50, 50, 0.45);
 
     > div, > h3, > h4 {
       padding: 0 10px;
@@ -156,5 +159,6 @@ section#other-projects {
     display: inline-block;
     vertical-align: top;
     margin-bottom: 0;
+    box-shadow: 0 2px 2px 0 rgba(50, 50, 50, 0.45);
   }
 }
