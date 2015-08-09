@@ -286,6 +286,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sqlite3 (1.3.10)
     term-ansicolor (1.3.2)
       tins (~> 1.0)
     terminal-table (1.5.2)
@@ -358,6 +359,7 @@ DEPENDENCIES
   simplecov
   spring
   spring-commands-rspec
+  sqlite3
   title
   uglifier
   vcr
