@@ -27,6 +27,7 @@ gem "rails", "~> 4.2.0"
 gem "recipient_interceptor"
 gem "refills"
 gem "sass-rails", "~> 5.0"
+gem "sqlite3"
 gem "title"
 gem "uglifier"
 
@@ -50,6 +51,7 @@ group :development, :test do
 end
 
 group :test do
+  gem "database_cleaner"
   gem "launchy"
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false

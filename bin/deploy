@@ -13,6 +13,7 @@ ssh $DEPLOY_USER@$HOST "
   export HOST=$HOST
   export SECRET_KEY_BASE=temp_insecure
   bundle
+  rake db:migrate
   rake assets:precompile
   (echo flush_all; sleep 1) | telnet localhost 11211 || true
   touch tmp/restart.txt
