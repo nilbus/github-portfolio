@@ -126,8 +126,8 @@ class Repo
     if user_is_collaborator
       factors += [
         RelevanceFactor.new(:age, 3) { ((version.date || created_at) - 3.years.ago) / 3.years.to_f },
-        RelevanceFactor.new(:issues_resolved, 2) { issues_resolved / issues.size.to_f },
-        RelevanceFactor.new(:issues_triaged, 2) { issues_triaged / unresolved_issue_count.to_f },
+        RelevanceFactor.new(:issues_resolved, 2) { user_resolved_issues.size / issues.size.to_f },
+        RelevanceFactor.new(:issues_triaged, 2) { user_triaged_issues.size / unresolved_issue_count.to_f },
       ]
     else
       factors += [
