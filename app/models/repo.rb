@@ -73,6 +73,10 @@ class Repo
     user_is_owner? || user_is_collaborator
   end
 
+  def user_commit_count
+    stats.try(:commit_count_user) || user_commits.size
+  end
+
   def pull_requests
     issues.select(&:pull_request)
   end
@@ -95,27 +99,4 @@ class Repo
     user_pull_requests.any? || user_opened_issues.any? || user_commits.any? ||
       user_resolved_issues.any? || user_triaged_issues.any?
   end
-
-  # rubocop:disable Metrics/LineLength, Metrics/AbcSize, Metrics/MethodLength
-  def relevance(maximums: {})
-    factors = [
-      RelevanceFactor.new(:commits, 2) { user_commits.size / maximums.fetch(:commit_count).to_f },
-      RelevanceFactor.new(:stars, 3) { star_count / maximums.fetch(:star_count).to_f },
-    ]
-    if user_is_collaborator
-      factors += [
-        RelevanceFactor.new(:age, 3) { ((version.date || created_at) - 3.years.ago) / 3.years.to_f },
-        RelevanceFactor.new(:issues_resolved, 2) { user_resolved_issues.size / issues.size.to_f },
-        RelevanceFactor.new(:issues_triaged, 2) { user_triaged_issues.size / unresolved_issue_count.to_f },
-      ]
-    else
-      factors += [
-        RelevanceFactor.new(:percent_pull_requests_accepted, 3) { user_pull_requests_accepted.size / user_pull_requests.size.to_f },
-        RelevanceFactor.new(:number_pull_requests_accepted, 5) { [5, user_pull_requests_accepted.size].max / 5.0 },
-        RelevanceFactor.new(:issues_created, 3) { [5, user_opened_issues.size].max / 5.0 },
-      ]
-    end
-    RelevanceFactor.calculate(factors)
-  end
-  # rubocop:enable Metrics/LineLength, Metrics/AbcSize, Metrics:MethodLength
 end
