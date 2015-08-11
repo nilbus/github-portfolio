@@ -60,7 +60,7 @@ class Repo
       'Primary Contributor'
     when stats.contribution_rank_by_commits == 1
       'Largest Contributor'
-    when stats.contribution_rank_by_commits >= stats.total_contributors / 2.0
+    when stats.contribution_rank_by_commits <= stats.total_contributors / 2.0
       "Top #{stats.tier} Contributor"
     when stats.commits_authored_percentage >= 20 || stats.commit_count_user >= 10
       'Solid Contributor'
