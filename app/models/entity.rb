@@ -19,22 +19,32 @@ class Entity < Module
     super()
   end
 
-  def included(descendant) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+  def included(descendant)
     super
+    include_modules(descendant)
+    define_inspect(descendant)
+  end
+
+  def include_modules(klass)
     equalizer_attributes = @equalizer_attributes
-    descendant.module_eval do
-      include Lift
-      include Equalizer.new(*equalizer_attributes)
+    klass.send :include, Lift
+    klass.send :include, Equalizer.new(*equalizer_attributes)
+  end
 
-      define_method :inspect do
-        klass = self.class
-        name = klass.name || klass.inspect
-        attrs = (equalizer_attributes + _accessors_for_instance_variables).uniq
-        "#<#{name}#{attrs.map { |attr| " #{attr}=#{__send__(attr).inspect}" }.join}>"
-      end
+  def define_inspect(klass)
+    define_inspect_helper(klass)
+    equalizer_attributes = @equalizer_attributes
+    klass.send :define_method, :inspect do
+      klass = self.class
+      name = klass.name || klass.inspect
+      attrs = (equalizer_attributes + _accessors_for_instance_variables).uniq
+      "#<#{name}#{attrs.map { |attr| " #{attr}=#{__send__(attr).inspect}" }.join}>"
+    end
+  end
 
+  def define_inspect_helper(klass)
+    klass.module_eval do
       private
-
       define_method :_accessors_for_instance_variables do
         accessor_names = send(:instance_variable_names).map { |ivar| ivar[1..-1] }
         accessor_names.select { |accessor_name| respond_to?(accessor_name) }
