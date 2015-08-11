@@ -17,16 +17,20 @@ class Portfolio
   end
 
   def user_projects_with_user_activity
-    repos = user_repos.select(&:reports_activity?)
-    repos.sort_by { |repo| -RepoRelevance.new(repo: repo, all_repos: repos).to_i }
+    sorted_by_relevance user_repos.select(&:reports_activity?)
   end
 
   def other_projects_with_user_activity
-    repos = other_repos.select(&:reports_activity?)
-    repos.sort_by { |repo| -RepoRelevance.new(repo: repo, all_repos: repos).to_i }
+    sorted_by_relevance other_repos.select(&:reports_activity?)
   end
 
   def serialize
     Marshal.dump(self)
+  end
+
+  private
+
+  def sorted_by_relevance(repos)
+    repos.sort_by { |repo| -RepoRelevance.new(repo: repo, all_repos: repos).to_i }
   end
 end
