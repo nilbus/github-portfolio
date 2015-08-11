@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe UserRole do
+  around do |example|
+    # warnings caused by Adamantium trying to freeze an instance_double
+    Kernel::silence_warnings(&example)
+  end
+
   context 'with casual stats' do
     let(:casual_stats) {
       instance_double(Stats,
