@@ -21,6 +21,8 @@ class FetchDataWorker
     portfolio
   end
 
+  private
+
   def fetch_revelant_repos_with_data
     repos = @github.self_starred_repos
     reporting_repos = repos.map do |repo|

@@ -6,8 +6,14 @@ class PortfolioStore
   end
 
   def delete(github_username)
-    Rails.cache.delete(key_for(github_username))
+    store.delete(key_for(github_username))
   end
+
+  def save(portfolio)
+    store.write(key_for(portfolio.user.login), portfolio.serialize)
+  end
+
+  private
 
   def key_for(github_username)
     "github_user:#{github_username}"
@@ -15,9 +21,5 @@ class PortfolioStore
 
   def store
     Rails.cache
-  end
-
-  def save(portfolio)
-    store.write(key_for(portfolio.user.login), portfolio.serialize)
   end
 end
