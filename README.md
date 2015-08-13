@@ -8,6 +8,9 @@ GitHub Portfolio
 
 Generate a portfolio for your GitHub repository.
 
+See the [wiki](https://github.com/nilbus/github-portfolio/wiki) for an overview of
+the implementation.
+
 Selecting Repositories to Showcase
 ----------------------------------
 
