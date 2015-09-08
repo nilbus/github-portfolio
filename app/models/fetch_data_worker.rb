@@ -1,7 +1,7 @@
 # Fetch the profile data for a GitHub user, and store results in a PortfolioStore.
 #
-# A GitHub API token is loaded from config/secrets.yml. The token only needs to grant
-# public access.
+# A GitHub API token is loaded from config/secrets.yml. The token needs to grant
+# public_repo access.
 #
 class FetchDataWorker
   def initialize(github_username)
