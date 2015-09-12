@@ -2,7 +2,13 @@
 
 @import icomoon
 @import normalize-rails
+@import bourbon
+@import neat
 @import masonry/basic
+$landscape-mobile-width: 488px
+$desktop-width: 1000px
+$landscape-mobile: new-breakpoint(min-width $landscape-mobile-width max-width $desktop-width - 1)
+$desktop: new-breakpoint(min-width $desktop-width)
 @import *
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700)
@@ -39,11 +45,8 @@ ul
   list-style: none
 
 #container
-  width: 1200px
-  margin: auto
-  position: relative
-  padding: 20px
-  min-height: 100%
+  +outer-container(1200px)
+  margin-top: 20px
   background-color: inherit
   // override masonry basic.css
 
