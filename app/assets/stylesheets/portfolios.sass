@@ -1,0 +1,110 @@
+header.profile
+  text-align: center
+  h2
+    font-weight: 600
+    margin: .2em
+  .intro
+    margin: 2em auto 3em
+    width: 60%
+    line-height: 1.7em
+    font-size: 1.2em
+    font-weight: 300
+
+section#my-projects, section#other-projects
+  .project
+    border: 1px solid #8A8A8A
+    border-radius: 7px
+    padding: 10px 0
+    margin: 20px 0
+    box-shadow: 0 2px 5px 0 rgba(50, 50, 50, 0.45)
+    > div, > h3, > h4
+      padding: 0 10px
+    h3.heading, h4.heading
+      a
+        color: #000000
+      .star-count
+        float: right
+        &:after
+          content: "★"
+      .name, .language, .role-title, .contribution-percent
+        display: inline
+    .activity
+      padding: 10px
+      .issue
+        .issue-number, .issue-title, .issue-state
+          display: inline
+      .commit
+        .commit-sha, .commit-message-subject
+          display: inline
+
+section#my-projects
+  .project
+    h3.heading
+      .language, .role-title, .contribution-percent, .star-count
+        font-weight: 400
+      .contribution-percent
+        &:before
+          content: "("
+        &:after
+          content: "%)"
+      .role-title:before
+        content: "- "
+    .sub-heading
+      .description
+        display: inline-block
+      .time-period-duration
+        float: right
+    .activity section
+      width: 33%
+      display: inline-block
+      vertical-align: top
+    .overall-statistics
+      border-top: 1px solid #CBCBCB
+      padding: 1.2em 0 0.5em 0
+      ul
+        white-space: nowrap
+        text-align: center
+        li
+          margin: 0
+          padding: 0
+          width: 25%
+          display: inline-block
+          text-align: center
+          .label
+            display: inline-block
+            font-size: 1.2em
+            padding-left: .5em
+            vertical-align: middle
+          =statistic-icon
+            font-size: 2em
+            line-height: 1.2
+            vertical-align: middle
+          &.total-commit-count:before
+            +statistic-icon
+            +icomoon-quill
+          &.project-created:before
+            +statistic-icon
+            +icomoon-github3
+          &.release-age:before
+            +statistic-icon
+            +icomoon-history
+          &.version:before
+            +statistic-icon
+            +icomoon-price-tag
+
+section#other-projects
+  .project
+    width: 32%
+    display: inline-block
+    vertical-align: top
+    margin-bottom: 0
+    box-shadow: 0 2px 2px 0 rgba(50, 50, 50, 0.45)
+    &:before
+      content: ''
+      height: 2px
+      border-top-right-radius: 30px
+      border-top-left-radius: 30px
+      position: absolute
+      top: 0
+      left: 1px
+      right: 2px
