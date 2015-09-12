@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   else
     root 'portfolios#index'
   end
-  get '/test', to: 'portfolios#test'
   get '/:id', to: 'portfolios#show'
   get '/:id/reload', to: 'portfolios#reload'
   resources :portfolios, only: %i(index show)
