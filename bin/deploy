@@ -8,6 +8,7 @@ ssh $DEPLOY_USER@$HOST "
   set -o errexit
   cd github-portfolio
   git fetch
+  git checkout master
   git reset --hard origin/master
   export RAILS_ENV=production
   export HOST=$HOST
