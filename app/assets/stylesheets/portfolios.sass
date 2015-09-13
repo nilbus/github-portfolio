@@ -4,14 +4,14 @@ header.profile
     font-weight: 600
     margin: .2em
   .intro
-    margin: 2em auto 3em
-    width: 60%
+    padding: 20px 0
     line-height: 1.7em
     font-size: 1.2em
     font-weight: 300
 
 section#my-projects, section#other-projects
   .project
+    +row
     border: 1px solid #8A8A8A
     border-radius: 7px
     padding: 10px 0
@@ -19,7 +19,7 @@ section#my-projects, section#other-projects
     box-shadow: 0 2px 5px 0 rgba(50, 50, 50, 0.45)
     > div, > h3, > h4
       padding: 0 10px
-    h3.heading, h4.heading
+    .heading
       a
         color: #000000
       .star-count
@@ -29,7 +29,9 @@ section#my-projects, section#other-projects
       .name, .language, .role-title, .contribution-percent
         display: inline
     .activity
-      padding: 10px
+      +row
+      section
+        margin-top: 10px
       .issue
         .issue-number, .issue-title, .issue-state
           display: inline
@@ -55,21 +57,23 @@ section#my-projects
       .time-period-duration
         float: right
     .activity section
-      width: 33%
-      display: inline-block
-      vertical-align: top
+      padding-bottom: 10px
+      +media($desktop)
+        +span-columns(4)
     .overall-statistics
       border-top: 1px solid #CBCBCB
-      padding: 1.2em 0 0.5em 0
+      padding: 10px 10px 0 10px
       ul
         white-space: nowrap
-        text-align: center
         li
-          margin: 0
-          padding: 0
-          width: 25%
-          display: inline-block
-          text-align: center
+          +media($desktop)
+            +span-columns(3)
+            text-align: center
+            &:nth-child(1):nth-last-child(2) // When there are only 2 siblings
+              +shift(3)
+          +media($landscape-mobile)
+            +span-columns(6)
+            +omega(2n)
           .label
             display: inline-block
             font-size: 1.2em
@@ -93,11 +97,15 @@ section#my-projects
             +icomoon-price-tag
 
 section#other-projects
+  +row
   .project
-    width: 32%
-    display: inline-block
-    vertical-align: top
-    margin-bottom: 0
+    +span-columns(12)
+    +media($landscape-mobile)
+      +span-columns(6)
+    +media($desktop)
+      +span-columns(4)
+    margin-bottom: 0px
+    margin-right: 0 !important
     box-shadow: 0 2px 2px 0 rgba(50, 50, 50, 0.45)
     &:before
       content: ''
@@ -108,3 +116,5 @@ section#other-projects
       top: 0
       left: 1px
       right: 2px
+  .gutter-sizer
+    width: flex-gutter()
