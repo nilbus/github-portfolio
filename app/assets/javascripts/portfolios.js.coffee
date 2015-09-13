@@ -22,8 +22,12 @@ class LoadingPage
 
   initializeMasonryLayout: ->
     $(window).load ->
+      $('#other-projects').append('<div class="gutter-sizer"></div>')
       $('#other-projects').masonry
-        gutterWidth: 22
         itemSelector: '.project'
+        transitionDuration: 0
+        columnWidth: '.project'
+        gutter: '.gutter-sizer'
+        percentPosition: true
 
 new LoadingPage().checkForMissingPortfolio()

@@ -97,11 +97,15 @@ section#my-projects
             +icomoon-price-tag
 
 section#other-projects
+  +row
   .project
-    width: 32%
-    display: inline-block
-    vertical-align: top
-    margin-bottom: 0
+    +span-columns(12)
+    +media($landscape-mobile)
+      +span-columns(6)
+    +media($desktop)
+      +span-columns(4)
+    margin-bottom: 0px
+    margin-right: 0 !important
     box-shadow: 0 2px 2px 0 rgba(50, 50, 50, 0.45)
     &:before
       content: ''
@@ -112,3 +116,5 @@ section#other-projects
       top: 0
       left: 1px
       right: 2px
+  .gutter-sizer
+    width: flex-gutter()

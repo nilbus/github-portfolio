@@ -4,7 +4,6 @@
 @import normalize-rails
 @import bourbon
 @import neat
-@import masonry/basic
 $landscape-mobile-width: 488px
 $desktop-width: 1000px
 $landscape-mobile: new-breakpoint(min-width $landscape-mobile-width max-width $desktop-width - 1)
@@ -47,8 +46,6 @@ ul
 #container
   +outer-container(1200px)
   margin-top: 20px
-  background-color: inherit
-  // override masonry basic.css
 
 .parens
   &:before
