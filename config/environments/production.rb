@@ -28,6 +28,8 @@ Rails.application.configure do
   # Enable deflate / gzip compression of controller-generated responses
   config.middleware.use Rack::Deflater
 
+  config.action_controller.page_cache_directory = Rails.root.join "public/page_cache"
+
   # Ensure requests are only served from one, canonical host name
   config.middleware.use Rack::CanonicalHost, ENV.fetch("HOST")
 

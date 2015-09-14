@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby "2.2.3"
 
 gem "adamantium"
+gem "actionpack-page_caching", "~> 1.0"
 gem "airbrake"
 gem "autoprefixer-rails"
 gem "bourbon", "~> 4.2.0"

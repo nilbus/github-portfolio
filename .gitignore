@@ -10,6 +10,7 @@
 /log/*
 /public/system
 /public/assets
+/public/page_cache
 /tags
 /tmp/*
 /config/secrets.yml
