@@ -26,7 +26,7 @@
           - if project.user_resolved_issues.any?
             %section.resolved-issues
               %h4
-                Personally Resolved Issues and PRs
+                Personally Resolved Issues &amp; PRs
                 %span.parens= "#{project.user_resolved_issues.size} of #{project.issues.size}"
               %ul
                 - project.user_resolved_issues[0,5].each do |issue|
@@ -37,7 +37,7 @@
           - if project.user_triaged_issues.any?
             %section.triaged-issues
               %h4
-                Personally Triaged Issues and PRs
+                Personally Triaged Issues &amp; PRs
                 %span.parens= "#{project.user_triaged_issues.size} of #{project.unresolved_issue_count}"
               %ul
                 - project.user_triaged_issues[0,5].each do |issue|
