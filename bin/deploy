@@ -16,6 +16,8 @@ ssh $DEPLOY_USER@$HOST "
   bundle
   rake db:migrate
   rake assets:precompile
-  (echo flush_all; sleep 1) | telnet localhost 11211 || true
+  if [[ -z \"$KEEP_CACHE\" ]]; then
+    (echo flush_all; sleep 1) | telnet localhost 11211 || true
+  fi
   touch tmp/restart.txt
 "
