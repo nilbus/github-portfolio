@@ -18,7 +18,7 @@
           .role-title= project.user_role
           .contribution-percent= project.user_contribution_percentage
         .sub-heading
-          .description= project.description
+          .description{title: project.description}= project.description
           .time-period-duration= project.reporting_period
         .activity
           - if project.user_resolved_issues.any?
@@ -73,7 +73,7 @@
           .star-count= number_with_delimiter project.star_count
           .name= link_to project.full_name, project.url
         .sub-heading
-          .description= project.description
+          .description{title: project.description}= project.description
         .activity
           - if project.user_pull_requests.any?
             %section.pull-requests

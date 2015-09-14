@@ -38,6 +38,10 @@ section#my-projects, section#other-projects
       .commit
         .commit-sha, .commit-message-subject
           display: inline
+  .description
+    white-space: nowrap
+    overflow-x: hidden
+    text-overflow: ellipsis
 
 section#my-projects
   .project
@@ -52,8 +56,6 @@ section#my-projects
       .role-title:before
         content: "- "
     .sub-heading
-      .description
-        display: inline-block
       .time-period-duration
         float: right
     .activity section
