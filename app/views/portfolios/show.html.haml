@@ -1,3 +1,5 @@
+- content_for :title do
+  = "#{html_escape @portfolio.header.title} &ndash; GitHub Portfolio".html_safe
 - content_for :head do
   = branding_css(@branding)
 
