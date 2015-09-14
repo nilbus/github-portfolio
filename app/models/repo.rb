@@ -26,6 +26,10 @@ class Repo
     version
   ))
 
+  def description
+    @description.strip
+  end
+
   def created_month_year
     created_at.strftime('%b %Y')
   end
