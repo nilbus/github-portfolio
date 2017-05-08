@@ -27,7 +27,7 @@ class Repo
   ))
 
   def description
-    @description.strip
+    @description.try(&:strip) || ''
   end
 
   def created_month_year
