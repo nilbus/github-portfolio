@@ -16,7 +16,7 @@ Selecting Repositories to Showcase
 
 github-portfolio will only show projects that you have self-starred.
 
-1. Starring a repository that you can push to will show it a main repository.
+1. Starring a repository that you can push to will display it as a primary repository.
 2. Starring a your fork of another repostiory will show the parent repository as a
    project that you have contributed to.
 
