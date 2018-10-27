@@ -54,6 +54,7 @@ After bundler installs gems, these initial setup steps will get the app running:
 
 * (Optional) For fast page loads, [configure your web server][1] to use the page
   caches that the app generates in `public/page_cache/`.
+
 [1]: https://github.com/rails/actionpack-page_caching/issues/27#issuecomment-110550147
 
 Customizing
