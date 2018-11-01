@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.3.5"
+ruby "2.3.6"
 
 gem "adamantium"
 gem "actionpack-page_caching", "~> 1.0"
