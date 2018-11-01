@@ -46,7 +46,7 @@ group :development, :test do
   gem "guard-rubocop"
   gem "guard-shell"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.3.0"
+  gem "rspec-rails", "~> 3.3"
 end
 
 group :test do
