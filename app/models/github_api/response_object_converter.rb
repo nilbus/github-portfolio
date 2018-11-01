@@ -33,7 +33,7 @@ class GithubAPI::ResponseObjectConverter
       assigned_to: user(response.assignee),
       closed_by: user(response.closed_by),
       created_by: user(response.user),
-      has_user_commentary: user_comment_count && user_comment_count > 0,
+      has_user_commentary: user_comment_count&.positive?,
       pull_request: pr || response.pull_request.present?,
       repo: repo_full_name,
       state: response.merged_at ? 'merged' : response.state,

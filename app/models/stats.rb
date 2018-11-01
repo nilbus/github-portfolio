@@ -34,13 +34,13 @@ class Stats
   memoize :addition_count_user
 
   def commits_authored_percentage
-    return 0 unless stats && commit_count_total > 0
+    return 0 unless stats && commit_count_total.positive?
 
     (100.0 * commit_count_user / commit_count_total).round
   end
 
   def lines_added_percentage
-    return 0 unless stats && addition_count_total > 0
+    return 0 unless stats && addition_count_total.positive?
 
     (100.0 * addition_count_user / addition_count_total).round
   end
