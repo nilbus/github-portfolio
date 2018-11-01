@@ -2,8 +2,6 @@
 
 # Convert Octokit API responses into ValueObject/Entity objects
 #
-# rubocop:disable Style/ClassAndModuleChildren
-#
 class GithubAPI::ResponseObjectConverter
   def initialize(querying_user:)
     @querying_user = querying_user

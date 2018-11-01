@@ -6,8 +6,6 @@
 # aggregate calls to fetch a single piece of information, when the API does not
 # provide that information directly.
 #
-# rubocop:disable Metrics/ClassLength
-#
 class GithubAPI
   def initialize(github_username:, token: nil, cache: true)
     @github_username = github_username
