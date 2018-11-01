@@ -1,6 +1,6 @@
+# frozen_string_literal: true
+
 # Convert Octokit API responses into ValueObject/Entity objects
-#
-# rubocop:disable Style/ClassAndModuleChildren
 #
 class GithubAPI::ResponseObjectConverter
   def initialize(querying_user:)
@@ -31,7 +31,7 @@ class GithubAPI::ResponseObjectConverter
       assigned_to: user(response.assignee),
       closed_by: user(response.closed_by),
       created_by: user(response.user),
-      has_user_commentary: user_comment_count && user_comment_count > 0,
+      has_user_commentary: user_comment_count&.positive?,
       pull_request: pr || response.pull_request.present?,
       repo: repo_full_name,
       state: response.merged_at ? 'merged' : response.state,
@@ -43,6 +43,7 @@ class GithubAPI::ResponseObjectConverter
 
   def user(response_user)
     return nil unless response_user.present?
+
     User.new(login: response_user.login, name: response_user.name.presence)
   end
 

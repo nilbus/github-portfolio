@@ -1,30 +1,32 @@
+# frozen_string_literal: true
+
 # A GitHub project and its data
 #
 class Repo
   include Entity.new(:full_name)
-  attr_accessor(*%i(
-    created_at
-    description
-    fork
-    full_name
-    issues
-    issues_url
-    primary_language
-    languages
-    name
-    owner
-    releases_url
-    reporting_period
-    star_count
-    url
-    querying_user
-    stats
-    user_is_collaborator
-    user_comments
-    user_commits
-    user_commits_url
-    version
-  ))
+  attr_accessor(
+    :created_at,
+    :fork,
+    :full_name,
+    :issues,
+    :issues_url,
+    :languages,
+    :name,
+    :owner,
+    :primary_language,
+    :querying_user,
+    :releases_url,
+    :reporting_period,
+    :star_count,
+    :stats,
+    :url,
+    :user_comments,
+    :user_commits,
+    :user_commits_url,
+    :user_is_collaborator,
+    :version,
+  )
+  attr_writer :description
 
   def description
     @description.try(&:strip) || ''

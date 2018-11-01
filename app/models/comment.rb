@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A Comment value object.
 #
 # A GitHub comment can be attached to either a commit, an issue, or a specific line

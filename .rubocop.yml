@@ -10,15 +10,45 @@ AllCops:
     - 'spec/**/*'
     - 'app/helpers/flashes_helper.rb'
     - 'vendor/**/*'
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/models/github_api.rb'
+
+Metrics/LineLength:
+  Max: 85
+
+Naming/UncommunicativeMethodParamName:
+  Exclude:
+    - 'app/models/github_api/response_object_converter.rb'
+
+Security/MarshalLoad:
+  Exclude:
+    - 'app/models/portfolio.rb'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/models/github_api/response_object_converter.rb'
+
 Style/Documentation:
   Exclude:
     - 'app/controllers/**/*'
     - 'app/helpers/**.*'
+
 Style/ParallelAssignment:
   Enabled: false
-Style/SpaceInsideHashLiteralBraces:
-  Enabled: false
-Style/TrailingComma:
-  Enabled: false
-Metrics/LineLength:
-  Max: 85
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma

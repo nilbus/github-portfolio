@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A presenter value object that provides convenience methods to access all the
 # data needed to render a portfolio.
 class Portfolio

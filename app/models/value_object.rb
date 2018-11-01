@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A value object is immutable and may have no side effects.
 # This allows value objects to be a worry-free dependency.
 #

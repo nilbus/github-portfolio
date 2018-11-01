@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Persist and load Portfolio objects
 class PortfolioStore
   def find(github_username)

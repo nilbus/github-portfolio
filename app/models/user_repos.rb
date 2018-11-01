@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # An adapter/facade to GithubAPI that fetches Repo objects for a User with a
 # particualar ownership context.
 #
@@ -55,8 +57,10 @@ class UserRepos
     repo.user_comments = []
     repo.issues = @github.user_pull_requests(repo: repo)
     return if repo.issues.any?
+
     repo.issues = @github.user_issues(repo: repo)
     return if repo.issues.any?
+
     repo.user_commits = @github.user_commits(repo: repo)
     # return if repo.user_commits.any?
     # # TODO: Load my comments

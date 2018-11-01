@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fetch the profile data for a GitHub user, and store results in a PortfolioStore.
 #
 # A GitHub API token is loaded from config/secrets.yml. The token needs to grant
