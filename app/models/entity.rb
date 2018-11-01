@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # An enitity is mutable but may have no external side effects.
 # The purpose of Entity classes is to hold data that has an identity.
 #
@@ -45,6 +47,7 @@ class Entity < Module
   def define_inspect_helper(klass)
     klass.module_eval do
       private
+
       define_method :_accessors_for_instance_variables do
         accessor_names = send(:instance_variable_names).map { |ivar| ivar[1..-1] }
         accessor_names.select { |accessor_name| respond_to?(accessor_name) }

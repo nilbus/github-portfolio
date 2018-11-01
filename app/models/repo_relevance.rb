@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Determine how relevant a repository is based on several RelevanceFactors.
 # This correlates with a repository's prominence.
 #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Convert Octokit API responses into ValueObject/Entity objects
 #
 # rubocop:disable Style/ClassAndModuleChildren
@@ -43,6 +45,7 @@ class GithubAPI::ResponseObjectConverter
 
   def user(response_user)
     return nil unless response_user.present?
+
     User.new(login: response_user.login, name: response_user.name.presence)
   end
 

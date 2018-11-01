@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A header holds data for display at the top of a portfolio page
 #
 # Attributes:

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Generate colors for design customization.
 #
 # You may set the default color in secrets.yml. Eg. a blue:

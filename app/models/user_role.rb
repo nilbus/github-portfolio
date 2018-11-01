@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Describe a user's role on a project based on their contribution statistics
 class UserRole
   include ValueObject.new(:stats)
@@ -15,13 +17,13 @@ class UserRole
   # Matchers ordered by precedence
   def role_matchers
     {
-      -> { only_one_committer }         => 'Sole Author',
-      -> { authored_75_percent }        => 'Main Author',
-      -> { authored_50_percent }        => 'Primary Contributor',
-      -> { highest_commit_count }       => 'Largest Contributor',
-      -> { top_half_committers }        => "Top #{@stats.tier} Contributor",
+      -> { only_one_committer } => 'Sole Author',
+      -> { authored_75_percent } => 'Main Author',
+      -> { authored_50_percent } => 'Primary Contributor',
+      -> { highest_commit_count } => 'Largest Contributor',
+      -> { top_half_committers } => "Top #{@stats.tier} Contributor",
       -> { decent_commit_contribution } => 'Solid Contributor',
-      -> { true }                       => 'Casual Contributor',
+      -> { true } => 'Casual Contributor',
     }
   end
 

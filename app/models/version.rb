@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A versioned release for a repository
 class Version
   include ValueObject.new(:name, :date)

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 class PortfoliosController < ApplicationController
   caches_page :index, :show
 
-  def index
-  end
+  def index; end
 
   def show
     @github_username = params[:id]

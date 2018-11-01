@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fetch data from the GitHub API.
 #
 # This class interfaces to a specific API gem implementation, and allows us to
@@ -43,6 +45,7 @@ class GithubAPI
 
   def check_collaborator?(repo)
     return true if repo.owner.login == @github_username
+
     @api.collaborator?(repo_full_name)
   rescue Octokit::Forbidden
     false
@@ -124,6 +127,7 @@ class GithubAPI
   def contributors_stats(repo:)
     stats_response = @api.contributors_stats(repo.full_name)
     return Stats.new if stats_response.nil? # stats not ready
+
     stats_data = stats_response.map(&:to_attrs)
     Stats.new(user: @querying_user, contribution_stats_response: stats_data)
   end
@@ -142,16 +146,19 @@ class GithubAPI
   def version_from_tag(repo:) # rubocop:disable Metrics/AbcSize
     tag = @api.tags(repo.full_name).find { |t| t.name =~ /^v?\d+\./ }
     return if tag.nil?
+
     commit = @api.commit(repo.full_name, tag.commit.sha)
     Version.new(name: tag.name, date: commit.commit.committer.date)
   end
 
   def with_max(max)
     return yield if max.nil?
+
     max = max.to_i
     if max > 100 || max <= 0
-      fail ArgumentError, "max must be <= 100, GitHub's maximum per_page value"
+      raise ArgumentError, "max must be <= 100, GitHub's maximum per_page value"
     end
+
     previous_values = @api.auto_paginate, @api.per_page
     @api.auto_paginate, @api.per_page = false, max
     yield
