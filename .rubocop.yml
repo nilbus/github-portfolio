@@ -10,15 +10,29 @@ AllCops:
     - 'spec/**/*'
     - 'app/helpers/flashes_helper.rb'
     - 'vendor/**/*'
+
 Style/Documentation:
   Exclude:
     - 'app/controllers/**/*'
     - 'app/helpers/**.*'
+
 Style/ParallelAssignment:
   Enabled: false
-Style/SpaceInsideHashLiteralBraces:
+
+Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
-Style/TrailingComma:
-  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
 Metrics/LineLength:
   Max: 85
