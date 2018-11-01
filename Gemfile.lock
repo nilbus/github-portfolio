@@ -193,7 +193,7 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
-    puma (2.12.3)
+    puma (3.12.0)
     rack (1.6.8)
     rack-canonical-host (0.1.0)
       addressable
@@ -367,7 +367,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 2.3.5p376
+   ruby 2.3.6p384
 
 BUNDLED WITH
    1.16.0
