@@ -6,7 +6,6 @@ class Repo
   include Entity.new(:full_name)
   attr_accessor(
     :created_at,
-    :description,
     :fork,
     :full_name,
     :issues,
@@ -27,6 +26,7 @@ class Repo
     :user_is_collaborator,
     :version,
   )
+  attr_writer :description
 
   def description
     @description.try(&:strip) || ''
