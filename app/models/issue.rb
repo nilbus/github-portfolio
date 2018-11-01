@@ -18,7 +18,7 @@ class Issue
   def resolved_by?(user)
     return false unless resolved?
 
-    closed_by == user || assigned_to == user
+    [closed_by, assigned_to].include? user
   end
 
   def created_by?(user)
