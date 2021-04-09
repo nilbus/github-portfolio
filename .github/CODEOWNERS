@@ -1,0 +1,2 @@
+*.rb @stevenspiel
+app/controllers/application_controller.rb @ghost
